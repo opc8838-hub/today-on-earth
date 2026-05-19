@@ -1,0 +1,129 @@
+# Internal demo sources for Today on Earth sample renders.
+# These are for private testing and visual tuning only.
+#
+# Rights policy:
+# - rights_status: permission_needed means do not treat this as approved for
+#   public/commercial release until written permission is granted.
+# - Prefer official channel URLs over direct CDN/HLS scraping for demos.
+
+sources:
+  - id: skyline_venice_san_marco
+    title: Piazza San Marco - Venice
+    url: https://www.skylinewebcams.com/en/webcam/italia/veneto/venezia/piazza-san-marco.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Venice
+    city_cn: 威尼斯
+    latitude: 45.434
+    longitude: 12.338
+    timezone: Europe/Rome
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 18
+      wind_kmh: 9
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_rome_trevi
+    title: Trevi Fountain - Rome
+    url: https://www.skylinewebcams.com/en/webcam/italia/lazio/roma/fontana-di-trevi.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Rome
+    city_cn: 罗马
+    latitude: 41.9009
+    longitude: 12.4833
+    timezone: Europe/Rome
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 20
+      wind_kmh: 7
+      humidity: 61
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_shanghai
+    title: Skyline of Shanghai
+    url: https://www.skylinewebcams.com/en/webcam/china/shanghai/shanghai/skyline-of-shanghai.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: China
+    country_cn: 中国
+    city: Shanghai
+    city_cn: 上海
+    latitude: 31.2304
+    longitude: 121.4737
+    timezone: Asia/Shanghai
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 24
+      wind_kmh: 11
+      humidity: 72
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_venice_rialto
+    title: Rialto Bridge - Venice
+    url: https://www.skylinewebcams.com/en/webcam/italia/veneto/venezia/rialto-canal-grande.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Venice
+    city_cn: 威尼斯
+    latitude: 45.438
+    longitude: 12.3358
+    timezone: Europe/Rome
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 18
+      wind_kmh: 8
+      humidity: 66
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_world_youtube
+    title: 1200 Top Live Webcams
+    url: https://www.youtube.com/watch?v=EFum1rGUdkk
+    platform: youtube_live
+    provider: SkylineWebcams
+    country: World
+    country_cn: 全球
+    city: Live Cams
+    city_cn: 实时镜头
+    latitude: 35.6762
+    longitude: 139.6503
+    timezone: UTC
+    scene: global
+    quality: 7
+    weather:
+      temp_c: 17
+      wind_kmh: 10
+      humidity: 73
+    status: inactive
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    has_burned_overlays: true
+    credit: "Source: SkylineWebcams"
+    notes: "Do not use for layout tests: official YouTube aggregation has burned-in Skyline logo, map, QR code, and lower third."

@@ -31,10 +31,17 @@ def extract_stream_info(webcam_url):
     except:
         return None
 
-    # Extract m3u8 source from Clappr player config
-    m3u8_match = re.search(r"source:\s*'([^']+\.m3u8[^']*)'", html)
-    if not m3u8_match:
-        m3u8_match = re.search(r'source:\s*"([^"]+\.m3u8[^"]*)"', html)
+    # Extract m3u8 source from Clappr player config.
+    # Skyline currently exposes page-local livee.m3u8?a=<token>, which must be
+    # resolved through the hd-auth endpoint.
+    m3u8_match = re.search(
+        r"(?:url|source)\s*:\s*([\"'])(?P<url>(?:https?:)?//.+?\.m3u8.*?)\1",
+        html,
+    )
+    livee_match = re.search(
+        r"(?:url|source)\s*:\s*([\"'])(?:livee\.m3u8(?P<a_param>\?a=\w+))\1",
+        html,
+    )
 
     # Extract title
     title_match = re.search(r"<title>([^<]+)</title>", html)
@@ -53,12 +60,18 @@ def extract_stream_info(webcam_url):
         "webcam_id": webcam_id,
     }
 
-    if m3u8_match:
-        m3u8 = m3u8_match.group(1)
+    if livee_match:
+        result["stream_url"] = (
+            "https://hd-auth.skylinewebcams.com/live.m3u8"
+            + livee_match.group("a_param")
+        )
+        result["platform"] = "skylinewebcams_hls"
+    elif m3u8_match:
+        m3u8 = m3u8_match.group("url")
         if m3u8.startswith("//"):
             m3u8 = "https:" + m3u8
         elif not m3u8.startswith("http"):
-            m3u8 = f"https://cdn.skylinewebcams.com/{m3u8}"
+            m3u8 = urljoin(BASE + "/", m3u8)
         result["stream_url"] = m3u8
         result["platform"] = "skylinewebcams_hls"
     elif yt_match:
