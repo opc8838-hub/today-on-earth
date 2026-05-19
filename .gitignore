@@ -1,0 +1,28 @@
+# Node
+web/node_modules/
+web/.next/
+web/out/
+
+# Python
+pipeline/__pycache__/
+pipeline/*.pyc
+*.pyc
+
+# Build artifacts
+pipeline/*.jpg
+pipeline/*.png
+pipeline/frame_*
+pipeline/ffmpeg.exe
+
+# Environment
+.env
+.env.local
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+/tmp/
+*.log

@@ -1,0 +1,1138 @@
+# Today on Earth — Video Source Database
+# =========================================
+# 维护规则：
+#   status: active（稳定）| degraded（偶断但不影响）| inactive（已失效）| pending（待验证）
+#   failures >= 3 且未恢复 → inactive
+#   last_ok 超过 7 天未更新 → 自动巡检
+#   quality: 1-10（10=顶级、清晰、稳定、构图好）
+#   platform: youtube_live | bilibili_live
+
+# ───────────────────────────────────────────────────────────
+# Layer: GOLD — 已验证稳定 (verified 2026-05-13)
+# ───────────────────────────────────────────────────────────
+
+sources:
+  # ── MANDATORY: 太空源（每次必选）────────────────────────────
+  - id: nasa_iss_live
+    url: https://www.youtube.com/watch?v=uwXgcTc8oY8
+    platform: youtube_live
+    country: International
+    country_cn: 國際太空站
+    city: ISS
+    city_cn: 國際太空站
+    timezone: UTC
+    scene: space
+    quality: 9
+    status: active
+    verified: 2026-05-14
+    failures: 0
+    notes: NASA 官方 ISS 直播，1280×720@60fps，公共领域无版权
+    mandatory: true
+
+  # Auto-pruned B站 pending: 2026-05-13 07:11 UTC
+  - id: tokyo_live_camera
+  url: https://www.youtube.com/watch?v=_k-5U7IeK8g
+  platform: youtube_live
+  country: Japan
+  country_cn: 日本
+  city: Tokyo
+  city_cn: 東京
+  timezone: Asia/Tokyo
+  scene: city
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 東京ライブカメラ 24/7，街景+Lofi BGM
+- id: tokyo_shinjuku
+  url: https://www.youtube.com/watch?v=6dp-bvQ7RWo
+  platform: youtube_live
+  country: Japan
+  country_cn: 日本
+  city: Tokyo
+  city_cn: 東京
+  timezone: Asia/Tokyo
+  scene: city
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 新宿大ガード交差点 Live Camera，繁华路口
+- id: shanghai_bund
+  url: https://www.youtube.com/watch?v=HjTnjZF6vxQ
+  platform: youtube_live
+  country: China
+  country_cn: 中國
+  city: Shanghai
+  city_cn: 上海
+  timezone: Asia/Shanghai
+  scene: city
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 上海外滩陆家嘴天际线直播，画质一般但视角稀缺
+- id: bangkok_sukhumvit
+  url: https://www.youtube.com/watch?v=UemFRPrl1hk
+  platform: youtube_live
+  country: Thailand
+  country_cn: 泰國
+  city: Bangkok
+  city_cn: 曼谷
+  timezone: Asia/Bangkok
+  scene: city
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Sukhumvit Soi 11 街景，热带城市夜生活
+- id: koh_samui_beach
+  url: https://www.youtube.com/watch?v=kkVrj2cr9Ko
+  platform: youtube_live
+  country: Thailand
+  country_cn: 泰國
+  city: Koh Samui
+  city_cn: 蘇梅島
+  timezone: Asia/Bangkok
+  scene: beach
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Crystal Bay 海滩 24/7，热带海岛画面
+- id: dubai_webcam
+  url: https://www.youtube.com/watch?v=ka9MsehA8I4
+  platform: youtube_live
+  country: United Arab Emirates
+  country_cn: 阿聯酋
+  city: Dubai
+  city_cn: 杜拜
+  timezone: Asia/Dubai
+  scene: city
+  quality: 6
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 迪拜城市视角，画质中等但中东地区稀缺
+- id: hong_kong_peak
+  url: https://www.youtube.com/watch?v=6KVgqEsuEyM
+  platform: youtube_live
+  country: China
+  country_cn: 中國
+  city: Hong Kong
+  city_cn: 香港
+  timezone: Asia/Hong_Kong
+  scene: city
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: HK360VR，山顶24/7俯瞰维港天际线，极稳
+- id: hong_kong_ap_lei_chau
+  url: https://www.youtube.com/watch?v=1YVUt_BqCgw
+  platform: youtube_live
+  country: China
+  country_cn: 中國
+  city: Hong Kong
+  city_cn: 香港
+  timezone: Asia/Hong_Kong
+  scene: city
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 鸭脷洲 South Horizon 城景+自然音
+- id: chengdu_panda_base
+  url: https://www.youtube.com/watch?v=SUXPnIEpbn4
+  platform: youtube_live
+  country: China
+  country_cn: 中國
+  city: Chengdu
+  city_cn: 成都
+  timezone: Asia/Shanghai
+  scene: wildlife
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: iPanda，熊猫基地24/7 HD，全球独一份
+- id: guangzhou_onelink
+  url: https://www.youtube.com/watch?v=_B7aqTDfPC4
+  platform: youtube_live
+  country: China
+  country_cn: 中國
+  city: Guangzhou
+  city_cn: 廣州
+  timezone: Asia/Shanghai
+  scene: city
+  quality: 5
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Walk China Wonders，OneLink Plaza 批发市场 Walk，非固定机位
+- id: dublin_earthcam
+  url: https://www.youtube.com/watch?v=3nyPER2kzqk
+  platform: youtube_live
+  country: Ireland
+  country_cn: 愛爾蘭
+  city: Dublin
+  city_cn: 都柏林
+  timezone: Europe/Dublin
+  scene: city
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam 官方，都柏林街景，1080p，极稳
+- id: london_abbey_road
+  url: https://www.youtube.com/watch?v=M3EYAY2MftI
+  platform: youtube_live
+  country: United Kingdom
+  country_cn: 英國
+  city: London
+  city_cn: 倫敦
+  timezone: Europe/London
+  scene: city
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam 官方，Abbey Road 披头士斑马线，伦敦经典
+- id: venice_grand_canal
+  url: https://www.youtube.com/watch?v=r8N6IsoIkTk
+  platform: youtube_live
+  country: Italy
+  country_cn: 意大利
+  city: Venice
+  city_cn: 威尼斯
+  timezone: Europe/Rome
+  scene: city
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 大运河 4K，贡多拉+运河画面，Venezia 经典视角
+- id: venice_st_mark
+  url: https://www.youtube.com/watch?v=7-XBRpKSv4Q
+  platform: youtube_live
+  country: Italy
+  country_cn: 意大利
+  city: Venice
+  city_cn: 威尼斯
+  timezone: Europe/Rome
+  scene: city
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 圣马可广场 4K，威尼斯最标志性地点
+- id: swiss_alps
+  url: https://www.youtube.com/watch?v=enYFXf8u7Lc
+  platform: youtube_live
+  country: Switzerland
+  country_cn: 瑞士
+  city: Swiss Alps
+  city_cn: 瑞士阿爾卑斯
+  timezone: Europe/Zurich
+  scene: mountain
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 瑞士全景 24/7，阿尔卑斯山脉+山谷
+- id: grimentz
+  url: https://www.youtube.com/watch?v=iCxfe27HpaY
+  platform: youtube_live
+  country: Switzerland
+  country_cn: 瑞士
+  city: Grimentz
+  city_cn: 格里門茨
+  timezone: Europe/Zurich
+  scene: mountain
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 瑞士阿尔卑斯山中小镇，雪景+木屋
+- id: miami_coralcity
+  url: https://www.youtube.com/watch?v=7i8ARjIeM2k
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Miami
+  city_cn: 邁阿密
+  timezone: America/New_York
+  scene: underwater
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Coral City Camera 水下，鱼群+珊瑚，全球独一无二的视角
+- id: honolulu_alamoana
+  url: https://www.youtube.com/watch?v=4vCmyyQJupk
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Honolulu
+  city_cn: 檀香山
+  timezone: Pacific/Honolulu
+  scene: beach
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Ala Moana 海滩 4K，夏威夷最具代表性的海滨
+- id: neworleans_earthcam
+  url: https://www.youtube.com/watch?v=Ksrleaxxxhw
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New Orleans
+  city_cn: 新奧爾良
+  timezone: America/Chicago
+  scene: city
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam 官方，新奥尔良法式街景
+- id: venice_beach_la
+  url: https://www.youtube.com/watch?v=EO_1LWqsCNE
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Los Angeles
+  city_cn: 洛杉磯
+  timezone: America/Los_Angeles
+  scene: beach
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Venice Beach 直播，LA 经典海滨，人潮+浪
+- id: rio_copacabana
+  url: https://www.youtube.com/watch?v=MKptOzPxVV8
+  platform: youtube_live
+  country: Brazil
+  country_cn: 巴西
+  city: Rio de Janeiro
+  city_cn: 里約熱內盧
+  timezone: America/Sao_Paulo
+  scene: beach
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Copacabana 海滩直播，南美洲稀缺源
+- id: cape_town_clifton
+  url: https://www.youtube.com/watch?v=IGu55JrxyHU
+  platform: youtube_live
+  country: South Africa
+  country_cn: 南非
+  city: Cape Town
+  city_cn: 開普敦
+  timezone: Africa/Johannesburg
+  scene: beach
+  quality: 7
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: Clifton 4th Beach，开普敦海滩+桌山背景
+- id: namibia_desert
+  url: https://www.youtube.com/watch?v=ydYDqZQpim8
+  platform: youtube_live
+  country: Namibia
+  country_cn: 納米比亞
+  city: Namib Desert
+  city_cn: 納米布沙漠
+  timezone: Africa/Windhoek
+  scene: desert
+  quality: 8
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: 納米布沙漠直播，非洲独特地貌，沙漠+动物
+- id: sydney_webcamsydney
+  url: https://www.youtube.com/watch?v=5uZa3-RMFos
+  platform: youtube_live
+  country: Australia
+  country_cn: 澳洲
+  city: Sydney
+  city_cn: 悉尼
+  timezone: Australia/Sydney
+  scene: harbor
+  quality: 9
+  status: active
+  verified: 2026-05-13
+  failures: 0
+  notes: WebcamSydney 官方，4K 悉尼港 24/7，歌剧院+大桥
+- id: beijing_chaoyang_joycity
+  url: https://live.bilibili.com/3291055
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Beijing
+  city_cn: 北京
+  timezone: Asia/Shanghai
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 窗外街景｜北京朝阳大悦城实时街景，电视人-Sam铭，在线~940
+- id: shenzhen_bay
+  url: https://live.bilibili.com/22172386
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Shenzhen
+  city_cn: 深圳
+  timezone: Asia/Shanghai
+  scene: bay
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 深圳湾实况 慢直播，驰骋在草原上的瓜皮喵，在线~20
+- id: jinan_baotu_spring
+  url: https://live.bilibili.com/11235702
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Jinan
+  city_cn: 濟南
+  timezone: Asia/Shanghai
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 24h慢直播·趵突腾空，直播济南，在线~420
+- id: mount_everest_bilibili
+  url: https://live.bilibili.com/22297925
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Everest
+  city_cn: 珠穆朗瑪
+  timezone: Asia/Shanghai
+  scene: mountain
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 珠穆朗玛〔推荐〕，星空探索君，在线~530，世界最高峰
+- id: tibet_basongcuo
+  url: https://live.bilibili.com/22727174
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Nyingchi
+  city_cn: 林芝
+  timezone: Asia/Shanghai
+  scene: lake
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 松赞巴松措林卡实时直播，在线~230，西藏圣湖
+- id: jade_dragon_snow_mountain
+  url: https://live.bilibili.com/21766645
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Lijiang
+  city_cn: 麗江
+  timezone: Asia/Shanghai
+  scene: mountain
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 从丽江看玉龙雪山，实时风景直播，在线~29
+- id: finland_aurora
+  url: https://live.bilibili.com/31050497
+  platform: bilibili_live
+  country: Finland
+  country_cn: 芬蘭
+  city: Lapland
+  city_cn: 拉普蘭
+  timezone: Europe/Helsinki
+  scene: nature
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 芬兰北极光慢直播（5-8月极昼），北欧的欧，在线~430
+- id: namibia_wildlife_bilibili
+  url: https://live.bilibili.com/27194596
+  platform: bilibili_live
+  country: Namibia
+  country_cn: 納米比亞
+  city: Namibia
+  city_cn: 納米比亞
+  timezone: Africa/Windhoek
+  scene: wildlife
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 水塘故事-纳米比亚野生动物24h慢直播，纳米比亚小水坑，在线~35
+- id: hong_kong_victoria_bilibili
+  url: https://live.bilibili.com/13131453
+  platform: bilibili_live
+  country: China
+  country_cn: 中國
+  city: Hong Kong
+  city_cn: 香港
+  timezone: Asia/Hong_Kong
+  scene: harbor
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: 静静的看看维港美景，天国的小伙伴，在线~450
+- id: rome_vatican
+  url: https://www.youtube.com/watch?v=89d3tEaqImM
+  platform: youtube_live
+  country: Italy
+  country_cn: 意大利
+  city: Rome
+  city_cn: 羅馬
+  timezone: Europe/Rome
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: REALVIEWCAM360，Vatican & St. Peter's 全景
+- id: rome_prati
+  url: https://www.youtube.com/watch?v=gXm3PGF4z0s
+  platform: youtube_live
+  country: Italy
+  country_cn: 意大利
+  city: Rome
+  city_cn: 羅馬
+  timezone: Europe/Rome
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Webcam Italia，Prati 区城景
+- id: berlin_alexanderplatz
+  url: https://www.youtube.com/watch?v=IRqboacDNFg
+  platform: youtube_live
+  country: Germany
+  country_cn: 德國
+  city: Berlin
+  city_cn: 柏林
+  timezone: Europe/Berlin
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: livespotting，亚历山大广场全景
+- id: prague_camstreamer
+  url: https://www.youtube.com/watch?v=IFnbDmgP69Q
+  platform: youtube_live
+  country: Czech Republic
+  country_cn: 捷克
+  city: Prague
+  city_cn: 布拉格
+  timezone: Europe/Prague
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: CamStreamer，布拉格全景
+- id: vienna_feratel
+  url: https://www.youtube.com/watch?v=NIuO6hrFTrg
+  platform: youtube_live
+  country: Austria
+  country_cn: 奧地利
+  city: Vienna
+  city_cn: 維也納
+  timezone: Europe/Vienna
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: feratel，奥地利天气全景，多城轮播
+- id: stockholm_dn_skrapan
+  url: https://www.youtube.com/watch?v=agY6ZaM1G_o
+  platform: youtube_live
+  country: Sweden
+  country_cn: 瑞典
+  city: Stockholm
+  city_cn: 斯德哥爾摩
+  timezone: Europe/Stockholm
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: MED Mediateknik，DN-Skrapan 城景
+- id: oslo_norway_live
+  url: https://www.youtube.com/watch?v=7VXn9NpuSZk
+  platform: youtube_live
+  country: Norway
+  country_cn: 挪威
+  city: Oslo
+  city_cn: 奧斯陸
+  timezone: Europe/Oslo
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Norway Live，奥斯陆城市全景
+- id: paris_palais
+  url: https://www.youtube.com/watch?v=OzYp4NRZlwQ
+  platform: youtube_live
+  country: France
+  country_cn: 法國
+  city: Paris
+  city_cn: 巴黎
+  timezone: Europe/Paris
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Vision-Environnement，Palais d'Iéna 俯瞰巴黎
+- id: reykjavik_our_world
+  url: https://www.youtube.com/watch?v=tYgGEC-ESTw
+  platform: youtube_live
+  country: Iceland
+  country_cn: 冰島
+  city: Reykjavik
+  city_cn: 雷克雅未克
+  timezone: Atlantic/Reykjavik
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Our World Live，冰岛城市全景
+- id: iceland_volcano
+  url: https://www.youtube.com/watch?v=4B-xBkUX4jM
+  platform: youtube_live
+  country: Iceland
+  country_cn: 冰島
+  city: Reykjanes Peninsula
+  city_cn: 雷克雅內斯半島
+  timezone: Atlantic/Reykjavik
+  scene: volcano
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: afarTV，冰岛火山 24/7 多机位
+- id: nyc_fox5_times_sq
+  url: https://www.youtube.com/watch?v=VGnFLdQW39A
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New York
+  city_cn: 紐約
+  timezone: America/New_York
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: FOX 5，Times Square 24/7，纽约地标
+- id: nyc_earthcam_summit
+  url: https://www.youtube.com/watch?v=2_PDaUJbfuI
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New York
+  city_cn: 紐約
+  timezone: America/New_York
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam，SUMMIT One Vanderbilt 天际线
+- id: nyc_bryant_park
+  url: https://www.youtube.com/watch?v=JPxiYF2fSC8
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New York
+  city_cn: 紐約
+  timezone: America/New_York
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Bryant Park NYC，公园实时
+- id: nyc_brooklyn_skyline
+  url: https://www.youtube.com/watch?v=MtP2lyZ8jQk
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New York
+  city_cn: 紐約
+  timezone: America/New_York
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Gotham West Studios，Brooklyn 天际线
+- id: nyc_statue_of_liberty
+  url: https://www.youtube.com/watch?v=cWR8KGKftUw
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: New York
+  city_cn: 紐約
+  timezone: America/New_York
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam，自由女神像
+- id: chicago_skydeck
+  url: https://www.youtube.com/watch?v=O0UGT7AT3aw
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Chicago
+  city_cn: 芝加哥
+  timezone: America/Chicago
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam，Skydeck 全景
+- id: sf_bay_bridge
+  url: https://www.youtube.com/watch?v=CXYr04BWvmc
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: San Francisco
+  city_cn: 舊金山
+  timezone: America/Los_Angeles
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: ABC7 News，Bay Bridge 24/7
+- id: sf_city_abc7
+  url: https://www.youtube.com/watch?v=G8RIAgPxaMc
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: San Francisco
+  city_cn: 舊金山
+  timezone: America/Los_Angeles
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: ABC7 News，旧金山全景 24/7
+- id: lasvegas_strip
+  url: https://www.youtube.com/watch?v=mmSKBT_nTfY
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Las Vegas
+  city_cn: 拉斯維加斯
+  timezone: America/Los_Angeles
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: LV Strip Cam，Strip 实时
+- id: lasvegas_fremont
+  url: https://www.youtube.com/watch?v=ZvYvZLfPatQ
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Las Vegas
+  city_cn: 拉斯維加斯
+  timezone: America/Los_Angeles
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Justin Clouse，Fremont Street 24/7
+- id: boston_harbor
+  url: https://www.youtube.com/watch?v=49WtyN1V1ZQ
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Boston
+  city_cn: 波士頓
+  timezone: America/New_York
+  scene: harbor
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Boston and Maine Live，Harbor 海港
+- id: boston_charles_river
+  url: https://www.youtube.com/watch?v=oezcsH9ZZ24
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Boston
+  city_cn: 波士頓
+  timezone: America/New_York
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Boston and Maine Live，Charles River
+- id: dc_washington_monument
+  url: https://www.youtube.com/watch?v=oDCAAfOSqvA
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Washington D.C.
+  city_cn: 華盛頓
+  timezone: America/New_York
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam，Washington Monument
+- id: seattle_uw
+  url: https://www.youtube.com/watch?v=4cgSE12k9Sc
+  platform: youtube_live
+  country: United States
+  country_cn: 美國
+  city: Seattle
+  city_cn: 西雅圖
+  timezone: America/Los_Angeles
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: UW Video，Space Needle 视角
+- id: buenos_aires_argentina_live
+  url: https://www.youtube.com/watch?v=2u4GnVNtlsY
+  platform: youtube_live
+  country: Argentina
+  country_cn: 阿根廷
+  city: Buenos Aires
+  city_cn: 布宜諾斯艾利斯
+  timezone: America/Argentina/Buenos_Aires
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Paseos y Turismo，Argentina LIVE 24/7
+- id: buenos_aires_uade
+  url: https://www.youtube.com/watch?v=rqBfiegG5qU
+  platform: youtube_live
+  country: Argentina
+  country_cn: 阿根廷
+  city: Buenos Aires
+  city_cn: 布宜諾斯艾利斯
+  timezone: America/Argentina/Buenos_Aires
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: UADE，校园全景
+- id: santiago_cam
+  url: https://www.youtube.com/watch?v=bgmR3W4eXic
+  platform: youtube_live
+  country: Chile
+  country_cn: 智利
+  city: Santiago
+  city_cn: 聖地亞哥
+  timezone: America/Santiago
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: SantiagoCam，城市全景
+- id: santiago_skyline
+  url: https://www.youtube.com/watch?v=E9FK3QGdpqE
+  platform: youtube_live
+  country: Chile
+  country_cn: 智利
+  city: Santiago
+  city_cn: 聖地亞哥
+  timezone: America/Santiago
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Santiago Skyline Live，Ñuñoa 城景
+- id: mexico_city_zocalo
+  url: https://www.youtube.com/watch?v=uV3wWHSvkfs
+  platform: youtube_live
+  country: Mexico
+  country_cn: 墨西哥
+  city: Mexico City
+  city_cn: 墨西哥城
+  timezone: America/Mexico_City
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: webcamsdemexico，Zócalo 广场全景
+- id: istanbul_bosphorus
+  url: https://www.youtube.com/watch?v=Veq52FdYk0s
+  platform: youtube_live
+  country: Turkey
+  country_cn: 土耳其
+  city: Istanbul
+  city_cn: 伊斯坦布爾
+  timezone: Europe/Istanbul
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Anatolian Airwaves，博斯普鲁斯海峡 7/24
+- id: jerusalem_western_wall
+  url: https://www.youtube.com/watch?v=77akujLn4k8
+  platform: youtube_live
+  country: Israel
+  country_cn: 以色列
+  city: Jerusalem
+  city_cn: 耶路撒冷
+  timezone: Asia/Jerusalem
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: EarthCam，西墙（哭墙）
+- id: mecca_makkah
+  url: https://www.youtube.com/watch?v=2n5VCfJrtT0
+  platform: youtube_live
+  country: Saudi Arabia
+  country_cn: 沙特阿拉伯
+  city: Mecca
+  city_cn: 麥加
+  timezone: Asia/Riyadh
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Islamic Mag Dua，天房直播 24/7
+- id: taipei_xiangshan_4k
+  url: https://www.youtube.com/watch?v=z_fY1pj1VBw
+  platform: youtube_live
+  country: Taiwan
+  country_cn: 台灣
+  city: Taipei
+  city_cn: 台北
+  timezone: Asia/Taipei
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Taipei Travel Live Cam，象山 4K 俯瞰台北101
+- id: taipei_dadaocheng
+  url: https://www.youtube.com/watch?v=Ndo_8RuefH4
+  platform: youtube_live
+  country: Taiwan
+  country_cn: 台灣
+  city: Taipei
+  city_cn: 台北
+  timezone: Asia/Taipei
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Taipei Travel Live Cam，大稻埕码头 4K
+- id: taipei_city_jacky
+  url: https://www.youtube.com/watch?v=pmM2CeSAx0I
+  platform: youtube_live
+  country: Taiwan
+  country_cn: 台灣
+  city: Taipei
+  city_cn: 台北
+  timezone: Asia/Taipei
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Taiwan Taipei Jacky，台北城市全景
+- id: seoul_hangang_24_7
+  url: https://www.youtube.com/watch?v=-JhoMGoAfFc
+  platform: youtube_live
+  country: South Korea
+  country_cn: 韓國
+  city: Seoul
+  city_cn: 首爾
+  timezone: Asia/Seoul
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Daily Seoul Live Camera，汉江 24/7 4K
+- id: seoul_station
+  url: https://www.youtube.com/watch?v=DSgn-lTHJzM
+  platform: youtube_live
+  country: South Korea
+  country_cn: 韓國
+  city: Seoul
+  city_cn: 首爾
+  timezone: Asia/Seoul
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: GiGAeyes Live TV，首尔站广场
+- id: seoul_gyeongbokgung
+  url: https://www.youtube.com/watch?v=VBlN0MGqyz4
+  platform: youtube_live
+  country: South Korea
+  country_cn: 韓國
+  city: Seoul
+  city_cn: 首爾
+  timezone: Asia/Seoul
+  scene: landmark
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: GiGAeyes Live TV，景福宫
+- id: seoul_skyline_riverworker
+  url: https://www.youtube.com/watch?v=vk5BHoDxXf0
+  platform: youtube_live
+  country: South Korea
+  country_cn: 韓國
+  city: Seoul
+  city_cn: 首爾
+  timezone: Asia/Seoul
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: RIVERWORKER，汉江天际线 4K
+- id: singapore_downtown
+  url: https://www.youtube.com/watch?v=9cfkyMzanbc
+  platform: youtube_live
+  country: Singapore
+  country_cn: 新加坡
+  city: Singapore
+  city_cn: 新加坡
+  timezone: Asia/Singapore
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: SingReef，Downtown 新加坡
+- id: singapore_coastal
+  url: https://www.youtube.com/watch?v=Z6aG6s7xhoY
+  platform: youtube_live
+  country: Singapore
+  country_cn: 新加坡
+  city: Singapore
+  city_cn: 新加坡
+  timezone: Asia/Singapore
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: SingReef，Downtown 海岸视角
+- id: hanoi_walk
+  url: https://www.youtube.com/watch?v=eveR520xI6w
+  platform: youtube_live
+  country: Vietnam
+  country_cn: 越南
+  city: Hanoi
+  city_cn: 河內
+  timezone: Asia/Ho_Chi_Minh
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Watchers Club，夜街 Walk，非固定机位
+- id: bali_weather
+  url: https://www.youtube.com/watch?v=L1duJDAqbJY
+  platform: youtube_live
+  country: Indonesia
+  country_cn: 印尼
+  city: Bali
+  city_cn: 巴厘島
+  timezone: Asia/Makassar
+  scene: beach
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: Bali Weather Live Stream
+- id: bali_ubud
+  url: https://www.youtube.com/watch?v=xuSvwBMhysw
+  platform: youtube_live
+  country: Indonesia
+  country_cn: 印尼
+  city: Bali
+  city_cn: 巴厘島
+  timezone: Asia/Makassar
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: BaliGuide.me，Ubud Live Camera
+- id: auckland_sky_tower
+  url: https://www.youtube.com/watch?v=Ql7graq0I9M
+  platform: youtube_live
+  country: New Zealand
+  country_cn: 新西蘭
+  city: Auckland
+  city_cn: 奧克蘭
+  timezone: Pacific/Auckland
+  scene: city
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: SurveillanceMap，Sky Tower + 海港
+- id: wellington_lyall_bay
+  url: https://www.youtube.com/watch?v=r7qzi_d758w
+  platform: youtube_live
+  country: New Zealand
+  country_cn: 新西蘭
+  city: Wellington
+  city_cn: 惠靈頓
+  timezone: Pacific/Auckland
+  scene: beach
+  quality: 0
+  status: pending
+  verified: 2026-05-13
+  failures: 0
+  notes: John Young，Lyall Bay 海岸

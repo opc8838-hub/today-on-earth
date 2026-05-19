@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Today on Earth — 源数据库报告 | 2026-05-13</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --card: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e0e0e8;
+    --dim: #8888a0;
+    --accent: #6ccf8f;
+    --warn: #f0c060;
+    --danger: #f06060;
+    --blue: #60a0f0;
+    --purple: #a080f0;
+    --cyan: #60d0d0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--dim); font-size: 0.95rem; margin-bottom: 2rem; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .card h2 .icon { font-size: 1.4rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 2px solid var(--border);
+    color: var(--dim);
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: middle;
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .city { font-weight: 600; white-space: nowrap; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .badge-live { background: rgba(108,207,143,0.18); color: var(--accent); }
+  .badge-off { background: rgba(240,96,96,0.15); color: var(--danger); }
+  .badge-pending { background: rgba(240,192,96,0.15); color: var(--warn); }
+  .badge-active { background: rgba(108,207,143,0.12); color: var(--accent); }
+  .scene {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    background: rgba(255,255,255,0.06);
+    color: var(--dim);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat .num { font-size: 2rem; font-weight: 800; }
+  .stat .label { color: var(--dim); font-size: 0.8rem; margin-top: 0.25rem; }
+  .num.green { color: var(--accent); }
+  .num.yellow { color: var(--warn); }
+  .num.blue { color: var(--blue); }
+  .num.purple { color: var(--purple); }
+  .section-divider {
+    grid-column: 1 / -1;
+    color: var(--dim);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+  }
+  .missing { color: var(--danger); }
+  .gap-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin-top: 0.5rem;
+  }
+  .gap-list li {
+    background: rgba(240,96,96,0.08);
+    border: 1px solid rgba(240,96,96,0.2);
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: var(--danger);
+  }
+  .footer {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.78rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .emoji-flag { margin-right: 2px; }
+  @media (max-width: 768px) {
+    body { padding: 1rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Today on Earth</h1>
+<p class="subtitle">源数据库报告 — 2026年5月13日生成 | 状态: active 24 + pending ~52 + 本轮新增 ~25 ≈ 100源</p>
+
+<!-- ═══════════════════════ STATS ═══════════════════════ -->
+<div class="stats">
+  <div class="stat"><div class="num green">24</div><div class="label">Active（已验证稳定）</div></div>
+  <div class="stat"><div class="num yellow">~77</div><div class="label">Pending（待人工审核）</div></div>
+  <div class="stat"><div class="num blue">50+</div><div class="label">覆盖城市</div></div>
+  <div class="stat"><div class="num purple">30+</div><div class="label">覆盖国家</div></div>
+  <div class="stat"><div class="num green">6</div><div class="label">覆盖大洲</div></div>
+  <div class="stat"><div class="num blue">2</div><div class="label">平台（YT + B站）</div></div>
+</div>
+
+<!-- ═══════════════════════ ACTIVE SOURCES ═══════════════════════ -->
+<div class="card">
+  <h2><span class="icon">🟢</span> Active 源（已验证稳定，可直接用于生产）</h2>
+  <table>
+    <thead><tr><th>城市</th><th>国家</th><th>源名称</th><th>场景</th><th>平台</th></tr></thead>
+    <tbody>
+      <tr><td class="city">东京</td><td>🇯🇵 日本</td><td>東京ライブカメラ 24/7 街景+Lofi</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">东京</td><td>🇯🇵 日本</td><td>新宿大ガード交差点</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">上海</td><td>🇨🇳 中国</td><td>外滩陆家嘴天际线</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">曼谷</td><td>🇹🇭 泰国</td><td>Sukhumvit Soi 11 街景</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">苏梅岛</td><td>🇹🇭 泰国</td><td>Crystal Bay 海滩 24/7</td><td><span class="scene">海滩</span></td><td>YT</td></tr>
+      <tr><td class="city">迪拜</td><td>🇦🇪 阿联酋</td><td>迪拜城市视角</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">香港</td><td>🇨🇳 中国</td><td>HK360VR 山顶24/7维港天际线</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">香港</td><td>🇨🇳 中国</td><td>鸭脷洲 South Horizon 城景</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">成都</td><td>🇨🇳 中国</td><td>iPanda 熊猫基地 24/7 HD</td><td><span class="scene">动物</span></td><td>YT</td></tr>
+      <tr><td class="city">广州</td><td>🇨🇳 中国</td><td>OneLink Plaza 批发市场 Walk</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">都柏林</td><td>🇮🇪 爱尔兰</td><td>EarthCam 都柏林街景 1080p</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">伦敦</td><td>🇬🇧 英国</td><td>EarthCam Abbey Road 斑马线</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">威尼斯</td><td>🇮🇹 意大利</td><td>大运河 4K 贡多拉</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">威尼斯</td><td>🇮🇹 意大利</td><td>圣马可广场 4K</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">瑞士阿尔卑斯</td><td>🇨🇭 瑞士</td><td>瑞士全景 24/7 山脉+山谷</td><td><span class="scene">山</span></td><td>YT</td></tr>
+      <tr><td class="city">格里门茨</td><td>🇨🇭 瑞士</td><td>阿尔卑斯山中小镇 雪景+木屋</td><td><span class="scene">山</span></td><td>YT</td></tr>
+      <tr><td class="city">迈阿密</td><td>🇺🇸 美国</td><td>Coral City Camera 水下 鱼群+珊瑚</td><td><span class="scene">水下</span></td><td>YT</td></tr>
+      <tr><td class="city">檀香山</td><td>🇺🇸 美国</td><td>Ala Moana 海滩 4K</td><td><span class="scene">海滩</span></td><td>YT</td></tr>
+      <tr><td class="city">新奥尔良</td><td>🇺🇸 美国</td><td>EarthCam 法式街景</td><td><span class="scene">城市</span></td><td>YT</td></tr>
+      <tr><td class="city">洛杉矶</td><td>🇺🇸 美国</td><td>Venice Beach 直播</td><td><span class="scene">海滩</span></td><td>YT</td></tr>
+      <tr><td class="city">里约热内卢</td><td>🇧🇷 巴西</td><td>Copacabana 海滩直播</td><td><span class="scene">海滩</span></td><td>YT</td></tr>
+      <tr><td class="city">开普敦</td><td>🇿🇦 南非</td><td>Clifton 4th Beach+桌山背景</td><td><span class="scene">海滩</span></td><td>YT</td></tr>
+      <tr><td class="city">纳米布沙漠</td><td>🇳🇦 纳米比亚</td><td>纳米布沙漠 沙漠+动物</td><td><span class="scene">沙漠</span></td><td>YT</td></tr>
+      <tr><td class="city">悉尼</td><td>🇦🇺 澳洲</td><td>WebcamSydney 4K 悉尼港 歌剧院+大桥</td><td><span class="scene">港湾</span></td><td>YT</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════ PENDING: BILIBILI ═══════════════════════ -->
+<div class="card">
+  <h2><span class="icon">🟡</span> Pending — B站源（待人工审核画面质量）</h2>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🏙️ 城市街景</h3>
+  <table>
+    <thead><tr><th>城市</th><th>源名称</th><th>频道</th><th>在线</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">北京 ⭐</td><td>窗外街景｜朝阳大悦城实时街景</td><td>电视人-Sam铭</td><td>~940</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">深圳</td><td>深圳湾实况 慢直播</td><td>驰骋在草原上的瓜皮喵</td><td>~20</td><td><span class="scene">海湾</span></td></tr>
+      <tr><td class="city">南京</td><td>南京Live</td><td>城市街景321</td><td>~30</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">济南</td><td>24h慢直播·趵突腾空</td><td>直播济南</td><td>~420</td><td><span class="scene">名泉</span></td></tr>
+      <tr><td class="city">多城</td><td>实况中国·上海北京广州深圳</td><td>东方明珠东方朔</td><td>~870</td><td><span class="scene">多城轮播</span></td></tr>
+      <tr><td class="city">多城</td><td>云游中国-城市</td><td>景都市</td><td>~460</td><td><span class="scene">多城轮播</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🏔️ 自然奇观</h3>
+  <table>
+    <thead><tr><th>地点</th><th>源名称</th><th>频道</th><th>在线</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">西藏·南迦巴瓦</td><td>南迦巴瓦实时慢直播</td><td>索松村大空里民宿</td><td>~1,200</td><td><span class="scene">神山</span></td></tr>
+      <tr><td class="city">西藏·珠穆朗玛</td><td>珠穆朗玛〔推荐〕</td><td>星空探索君</td><td>~530</td><td><span class="scene">最高峰</span></td></tr>
+      <tr><td class="city">西藏·巴松措</td><td>松赞巴松措林卡实时直播</td><td>松赞Songtsam</td><td>~230</td><td><span class="scene">圣湖</span></td></tr>
+      <tr><td class="city">云南·泸沽湖</td><td>泸沽湖星空慢直播</td><td>拍星星的王晋</td><td>~440</td><td><span class="scene">星空</span></td></tr>
+      <tr><td class="city">云南</td><td>大美云南(实时直播)</td><td>猫打醉拳</td><td>~15</td><td><span class="scene">全景</span></td></tr>
+      <tr><td class="city">丽江</td><td>玉龙雪山+大研古城全景</td><td>玉龙映海</td><td>~40</td><td><span class="scene">雪山</span></td></tr>
+      <tr><td class="city">敦煌</td><td>雅丹地貌实时直播</td><td>潮起敦煌</td><td>~10</td><td><span class="scene">沙漠</span></td></tr>
+      <tr><td class="city">元谋</td><td>元谋土林</td><td>—</td><td>~10</td><td><span class="scene">地貌</span></td></tr>
+      <tr><td class="city">九寨沟</td><td>九寨沟景观慢直播</td><td>九寨沟景区</td><td>~10</td><td><span class="scene">山水</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🌍 海外 + 🦅 野生动物</h3>
+  <table>
+    <thead><tr><th>地点</th><th>源名称</th><th>频道</th><th>在线</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">芬兰·拉普兰</td><td>芬兰北极光慢直播（5-8月极昼）</td><td>北欧的欧</td><td>~430</td><td><span class="scene">极光</span></td></tr>
+      <tr><td class="city">纳米比亚</td><td>野生动物24h慢直播</td><td>纳米比亚小水坑</td><td>~35</td><td><span class="scene">动物</span></td></tr>
+      <tr><td class="city">香港</td><td>静静的看看维港美景</td><td>天国的小伙伴</td><td>~450</td><td><span class="scene">港湾</span></td></tr>
+      <tr><td class="city">美国</td><td>白头海雕24小时慢直播</td><td>独角兽叔叔</td><td>~1,100</td><td><span class="scene">动物</span></td></tr>
+      <tr><td class="city">未知</td><td>隼|24小时慢直播</td><td>-一M一-</td><td>~17</td><td><span class="scene">动物</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════ PENDING: YT INTERNATIONAL ═══════════════════════ -->
+<div class="card">
+  <h2><span class="icon">🟡</span> Pending — YouTube 国际新增（待人工审核）</h2>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🇪🇺 欧洲</h3>
+  <table>
+    <thead><tr><th>城市</th><th>源名称</th><th>频道</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">罗马 ⭐</td><td>Vatican & St. Peter's 全景</td><td>REALVIEWCAM360</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">罗马</td><td>Prati 区城景</td><td>Webcam Italia</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">柏林 ⭐</td><td>亚历山大广场全景</td><td>livespotting</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">布拉格 ⭐</td><td>布拉格全景</td><td>CamStreamer</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">维也纳</td><td>奥地利天气全景（多城轮播）</td><td>feratel</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">斯德哥尔摩</td><td>DN-Skrapan 城景</td><td>MED Mediateknik</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">奥斯陆</td><td>城市全景</td><td>Norway Live</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">巴黎</td><td>Palais d'Iéna 俯瞰巴黎</td><td>Vision-Environnement</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">雷克雅未克</td><td>冰岛城市全景</td><td>Our World Live</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">冰岛</td><td>火山 24/7 多机位</td><td>afarTV</td><td><span class="scene">火山</span></td></tr>
+      <tr><td class="city">华沙 ⭐</td><td>波兰城市全景</td><td>WebCamera.pl</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">华沙</td><td>城市实时</td><td>Warsaw Livestream</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">圣彼得堡 ⭐</td><td>涅瓦大街 4K</td><td>Mobotix Webcams Russia</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">圣彼得堡</td><td>宫殿桥 4K</td><td>Mobotix Webcams Russia</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">里斯本 ⭐</td><td>城市全景</td><td>I love Lx</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">波尔图</td><td>Ribeira 河岸</td><td>Webcamtaxi</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">日内瓦</td><td>莱芒湖 Lac Léman</td><td>Vision-Environnement</td><td><span class="scene">湖</span></td></tr>
+      <tr><td class="city">赫尔辛基 ⭐</td><td>南港 + 西港</td><td>Port of Helsinki</td><td><span class="scene">港湾</span></td></tr>
+      <tr><td class="city">塔林 ⭐</td><td>Digital.Tallinn 4K</td><td>360PANO</td><td><span class="scene">城市</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🇺🇸 北美洲</h3>
+  <table>
+    <thead><tr><th>城市</th><th>源名称</th><th>频道</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">纽约 ⭐</td><td>Times Square 24/7</td><td>FOX 5 New York</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">纽约</td><td>SUMMIT One Vanderbilt 天际线</td><td>EarthCam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">纽约</td><td>Bryant Park</td><td>Bryant Park NYC</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">纽约</td><td>Brooklyn 天际线</td><td>Gotham West Studios</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">纽约</td><td>自由女神像</td><td>EarthCam</td><td><span class="scene">地标</span></td></tr>
+      <tr><td class="city">芝加哥 ⭐</td><td>Skydeck 全景</td><td>EarthCam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">旧金山</td><td>Bay Bridge 24/7</td><td>ABC7 News</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">旧金山</td><td>城市全景 24/7</td><td>ABC7 News</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">拉斯维加斯</td><td>Strip 实时</td><td>LV Strip Cam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">拉斯维加斯</td><td>Fremont Street 24/7</td><td>Justin Clouse</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">波士顿</td><td>Harbor 海港</td><td>Boston and Maine Live</td><td><span class="scene">港湾</span></td></tr>
+      <tr><td class="city">波士顿</td><td>Charles River</td><td>Boston and Maine Live</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">华盛顿</td><td>Washington Monument</td><td>EarthCam</td><td><span class="scene">地标</span></td></tr>
+      <tr><td class="city">西雅图</td><td>Space Needle 视角</td><td>UW Video</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">墨西哥城 ⭐</td><td>Zócalo 广场全景</td><td>webcamsdemexico</td><td><span class="scene">城市</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin:1rem 0 0.5rem;color:var(--dim);font-size:0.85rem;">🌏 亚太 + 中东 + 南美 + 非洲</h3>
+  <table>
+    <thead><tr><th>城市</th><th>源名称</th><th>频道</th><th>场景</th></tr></thead>
+    <tbody>
+      <tr><td class="city">台北 ⭐</td><td>象山 4K 俯瞰台北101</td><td>Taipei Travel Live Cam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">台北</td><td>大稻埕码头 4K</td><td>Taipei Travel Live Cam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">台北</td><td>台北城市全景</td><td>Taiwan Taipei Jacky</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">首尔 ⭐</td><td>汉江 24/7 4K</td><td>Daily Seoul Live Camera</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">首尔</td><td>首尔站广场</td><td>GiGAeyes Live TV</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">首尔</td><td>景福宫</td><td>GiGAeyes Live TV</td><td><span class="scene">地标</span></td></tr>
+      <tr><td class="city">首尔</td><td>汉江天际线 4K</td><td>RIVERWORKER</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">新加坡 ⭐</td><td>Downtown 新加坡</td><td>SingReef</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">新加坡</td><td>Downtown 海岸视角</td><td>SingReef</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">大阪</td><td>一心寺庭院 24/7</td><td>Joseph Shenouda</td><td><span class="scene">寺庙</span></td></tr>
+      <tr><td class="city">京都 ⭐</td><td>京都站巴士总站</td><td>Kyoto City Tourism</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">名古屋 ⭐</td><td>久屋大通公园</td><td>名古屋市</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">河内</td><td>越南夜街 Walk</td><td>Watchers Club</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">巴厘岛</td><td>Weather Live Webcam</td><td>Bali Weather</td><td><span class="scene">海滩</span></td></tr>
+      <tr><td class="city">巴厘岛</td><td>Ubud Live Camera</td><td>BaliGuide.me</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">墨尔本</td><td>城景</td><td>Melbourne Luxury Accommodation</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">布里斯班</td><td>Weather Live 城景</td><td>Brisbane Live</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">奥克兰 ⭐</td><td>Sky Tower + 海港</td><td>SurveillanceMap</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">惠灵顿</td><td>Lyall Bay 海岸</td><td>John Young</td><td><span class="scene">海滩</span></td></tr>
+      <tr><td class="city">伊斯坦布尔 ⭐</td><td>博斯普鲁斯海峡 7/24</td><td>Anatolian Airwaves</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">耶路撒冷 ⭐</td><td>西墙（哭墙）</td><td>EarthCam</td><td><span class="scene">地标</span></td></tr>
+      <tr><td class="city">麦加 ⭐</td><td>天房直播 24/7</td><td>Islamic Mag Dua</td><td><span class="scene">地标</span></td></tr>
+      <tr><td class="city">布宜诺斯艾利斯 ⭐</td><td>Argentina LIVE 24/7</td><td>Paseos y Turismo</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">布宜诺斯艾利斯</td><td>UADE 校园全景</td><td>UADE</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">圣地亚哥 ⭐</td><td>城市全景</td><td>SantiagoCam</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">圣地亚哥</td><td>Ñuñoa 城景</td><td>Santiago Skyline Live</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">内罗毕 ⭐</td><td>野生动物 Safari</td><td>Africam</td><td><span class="scene">动物</span></td></tr>
+      <tr><td class="city">马赛马拉 ⭐</td><td>Live Safari</td><td>Bushtops Safaris</td><td><span class="scene">动物</span></td></tr>
+      <tr><td class="city">加德满都 ⭐</td><td>Dharahara 塔全景</td><td>WEBCAM NEPAL LIVE</td><td><span class="scene">城市</span></td></tr>
+      <tr><td class="city">珠峰视角</td><td>Hotel Everest View 全景</td><td>WEBCAM NEPAL LIVE</td><td><span class="scene">山</span></td></tr>
+      <tr><td class="city">马尼拉/达沃</td><td>菲律宾社区街景</td><td>JazBaz / Maria Deseo</td><td><span class="scene">城市</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════ GAPS ═══════════════════════ -->
+<div class="card">
+  <h2><span class="icon">❌</span> 仍然空白 — 全球搜索零结果</h2>
+  <table>
+    <thead><tr><th>地区</th><th>缺失城市</th></tr></thead>
+    <tbody>
+      <tr><td>🇪🇬 北非</td><td class="missing">开罗</td></tr>
+      <tr><td>🇲🇦 北非</td><td class="missing">马拉喀什</td></tr>
+      <tr><td>🇭🇺 东欧</td><td class="missing">布达佩斯</td></tr>
+      <tr><td>🇷🇴 东欧</td><td class="missing">布加勒斯特（仅 was_live）</td></tr>
+      <tr><td>🇷🇺 东欧</td><td class="missing">莫斯科（仅圣彼得堡）</td></tr>
+      <tr><td>🇪🇸 西欧</td><td class="missing">马德里（仅聚合器）</td></tr>
+      <tr><td>🇧🇪 西欧</td><td class="missing">布鲁塞尔（仅 was_live）</td></tr>
+      <tr><td>🇩🇰 北欧</td><td class="missing">哥本哈根（仅聚合器）</td></tr>
+      <tr><td>🇳🇴 北欧</td><td class="missing">卑尔根（仅 was_live）</td></tr>
+      <tr><td>🇮🇳 南亚</td><td class="missing">孟买、德里</td></tr>
+      <tr><td>🇱🇰 南亚</td><td class="missing">科伦坡</td></tr>
+      <tr><td>🇲🇾 东南亚</td><td class="missing">吉隆坡（仅 was_live）</td></tr>
+      <tr><td>🇮🇩 东南亚</td><td class="missing">雅加达（仅 was_live）</td></tr>
+      <tr><td>🇶🇦🇴🇲 中东</td><td class="missing">多哈、马斯喀特</td></tr>
+      <tr><td>🇦🇪 中东</td><td class="missing">阿布扎比</td></tr>
+      <tr><td>🇦🇺 大洋洲</td><td class="missing">珀斯、黄金海岸（无稳定源）</td></tr>
+      <tr><td>🇨🇳 中国</td><td class="missing">内蒙古、杭州（无稳定源）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════ METHODOLOGY ═══════════════════════ -->
+<div class="card">
+  <h2><span class="icon">📋</span> 数据采集方法</h2>
+  <table>
+    <thead><tr><th>平台</th><th>搜索方式</th><th>验证方式</th></tr></thead>
+    <tbody>
+      <tr><td>YouTube</td><td>yt-dlp ytsearch + 逐个URL验证</td><td>yt-dlp --dump-json → live_status=is_live</td></tr>
+      <tr><td>B站</td><td>live API (area/getRoomList + Room/get_info) + WebFetch 搜索页</td><td>API live_status=1 确认</td></tr>
+      <tr><td>网页搜索</td><td>B站 WebFetch 关键词搜索</td><td>页面提取 + API 二次验证</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2><span class="icon">💡</span> 后续建议</h2>
+  <ol style="padding-left:1.2rem;color:var(--dim);">
+    <li style="margin-bottom:0.5rem;"><strong>人工策展</strong>：浏览 pending 源，选画面质量好的加入 active</li>
+    <li style="margin-bottom:0.5rem;"><strong>健康检查</strong>：跑 health_check.py 对所有 pending 源做在线验证</li>
+    <li style="margin-bottom:0.5rem;"><strong>自动发现</strong>：脚本定期扫 B站户外区 + YT关键词，新源自动进 pending</li>
+    <li style="margin-bottom:0.5rem;"><strong>全球聚合平台</strong>：EarthCam / SkylineWebcams / feratel 可作备选池</li>
+    <li style="margin-bottom:0.5rem;"><strong>空白地区</strong>：开罗/孟买/布达佩斯等可尝试本地平台（非YT/B站）</li>
+  </ol>
+</div>
+
+<div class="footer">
+  Today on Earth · 源数据库报告 · 2026-05-13 · 把看世界的窗口重新打开给下一代
+</div>
+
+</body>
+</html>
