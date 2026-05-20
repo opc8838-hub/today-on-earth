@@ -27,18 +27,12 @@ from zoneinfo import ZoneInfo
 
 import yaml
 
+from render_top_overlay import render_overlay
+
 
 WORK = Path(__file__).resolve().parent
 SOURCES_FILE = WORK / "sample_sources.yaml"
 OUTPUT_ROOT = Path("C:/tmp/today-on-earth-samples")
-
-CANVAS_W = 1920
-CANVAS_H = 1080
-FPS = 30
-
-FONT = Path("C:/Windows/Fonts/msyh.ttc")
-FONT_BOLD = Path("C:/Windows/Fonts/msyhbd.ttc")
-
 
 def find_exe(name: str, extra: list[str] | None = None) -> str:
     found = shutil.which(name)
@@ -56,6 +50,7 @@ def find_exe(name: str, extra: list[str] | None = None) -> str:
 FFMPEG = find_exe(
     "ffmpeg",
     [
+        "C:/Users/Administrator/.openclaw/tools/ffmpeg/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe",
         "C:/Users/Administrator/ffmpeg/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe",
         str(WORK / "ffmpeg.exe"),
     ],
@@ -63,6 +58,7 @@ FFMPEG = find_exe(
 FFPROBE = find_exe(
     "ffprobe",
     [
+        "C:/Users/Administrator/.openclaw/tools/ffmpeg/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe",
         "C:/Users/Administrator/ffmpeg/ffmpeg-master-latest-win64-gpl/bin/ffprobe.exe",
     ],
 )
@@ -78,55 +74,6 @@ def run(cmd: list[str], timeout: int = 120) -> subprocess.CompletedProcess[str]:
         errors="replace",
         timeout=timeout,
     )
-
-
-def ff_path(path: Path) -> str:
-    return str(path).replace("\\", "/").replace(":", r"\:")
-
-
-def escape_drawtext(text: str) -> str:
-    return (
-        text.replace("\\", r"\\")
-        .replace(":", r"\:")
-        .replace("'", r"\'")
-        .replace("%", r"\%")
-        .replace("\n", " ")
-    )
-
-
-def drawtext(
-    text: str,
-    x: str | int,
-    y: str | int,
-    size: int,
-    color: str = "white",
-    font: Path = FONT,
-    alpha: float | None = None,
-) -> str:
-    opts = [
-        f"fontfile='{ff_path(font)}'",
-        f"text='{escape_drawtext(text)}'",
-        "expansion=none",
-        f"x={x}",
-        f"y={y}",
-        f"fontsize={size}",
-        f"fontcolor={color}",
-        "shadowcolor=black@0.35",
-        "shadowx=1",
-        "shadowy=1",
-    ]
-    if alpha is not None:
-        opts.append(f"alpha={alpha}")
-    return "drawtext=" + ":".join(opts)
-
-
-def glass_text(text: str, x: str | int, y: str | int, size: int, color: str = "0x063451ff") -> str:
-    return drawtext(text, x, y, size, color, FONT_BOLD)
-
-
-def slide_x(target: int, distance: int = 1850, duration: float = 0.45) -> str:
-    """FFmpeg expression: slide from left into target x."""
-    return f"'{target}-max(0\\,0.45-t)*{distance / duration:.1f}'"
 
 
 def load_sources() -> list[dict]:
@@ -228,6 +175,7 @@ def get_stream_url(source: dict) -> str:
 def capture_and_render(source: dict, index: int, out_dir: Path, duration: int) -> Path:
     stream_url = get_stream_url(source)
     output = out_dir / f"clip_{index:02d}_{source['id']}.mp4"
+    overlay_path = out_dir / f"overlay_{index:02d}_{source['id']}.png"
 
     city_cn = source.get("city_cn") or source.get("city")
     country_cn = source.get("country_cn") or source.get("country")
@@ -235,7 +183,6 @@ def capture_and_render(source: dict, index: int, out_dir: Path, duration: int) -
     country_en = source.get("country")
     city_label = city_en if city_en == city_cn else f"{city_en} {city_cn}"
     country_label = country_en if country_en == country_cn else f"{country_en} {country_cn}"
-    time_line = f"Local time {local_time(source)}"
     weather = get_weather(source)
     temp_c = weather.get("temp_c", 17)
     wind_kmh = weather.get("wind_kmh", 10)
@@ -243,12 +190,18 @@ def capture_and_render(source: dict, index: int, out_dir: Path, duration: int) -
     rendered_local_time = local_time(source)
     source["_render_weather"] = weather
     source["_render_local_time"] = rendered_local_time
-    top_alpha = "'if(lt(t,0.18),0,if(lt(t,0.55),(t-0.18)/0.37,if(lt(t,%0.2f),1,(%0.2f-t)/0.45)))'" % (
-        max(duration - 0.45, 0.55),
-        duration,
+
+    render_overlay(
+        overlay_path,
+        city_label=city_label,
+        country_label=country_label,
+        temp_c=temp_c,
+        wind_kmh=wind_kmh,
+        humidity=humidity,
+        local_time=rendered_local_time,
     )
 
-    filters = [
+    base_filters = [
         "scale=1920:1080:force_original_aspect_ratio=increase",
         "crop=1920:1080",
         "fps=30",
@@ -256,29 +209,15 @@ def capture_and_render(source: dict, index: int, out_dir: Path, duration: int) -
         "hqdn3d=luma_spatial=1.5:chroma_spatial=2:luma_tmp=2",
         "unsharp=luma_msize_x=5:luma_msize_y=5:luma_amount=0.35",
         f"fade=t=in:st=0:d=0.18,fade=t=out:st={max(duration - 0.20, 0)}:d=0.20",
-        # Top glass panel, matching the supplied mockup.
-        f"drawbox=x={slide_x(145)}:y=82:w=1675:h=165:color=white@0.76:t=fill",
-        f"drawbox=x={slide_x(145)}:y=82:w=1675:h=1:color=white@0.95:t=fill",
-        f"drawbox=x={slide_x(145)}:y=246:w=1675:h=1:color=0x95bed2aa:t=fill",
-        # Blue lower band in the glass panel.
-        f"drawbox=x={slide_x(318)}:y=164:w=1040:h=56:color=0x65b8ddaa:t=fill",
-        f"drawbox=x={slide_x(318)}:y=164:w=1040:h=1:color=white@0.65:t=fill",
-        # Globe stand-in. Kept vector/text based so the sample renderer has no asset dependency.
-        drawtext("◎", slide_x(155), 66, 168, "0x50add8ff", FONT_BOLD, alpha=top_alpha),
-        drawtext("EARTH", slide_x(184), 171, 18, "0xffffffff", FONT_BOLD, alpha=top_alpha),
-        drawtext(city_label, slide_x(350), 109, 40, "0x063451ff", FONT_BOLD, alpha=top_alpha),
-        drawtext(country_label, slide_x(620), 109, 40, "0x063451ff", FONT_BOLD, alpha=top_alpha),
-        drawtext("TEMP", slide_x(372), 183, 20, "0xffffffff", FONT_BOLD, alpha=top_alpha),
-        drawtext(f"{temp_c}°C", slide_x(452), 179, 30, "0xffffffff", FONT, alpha=top_alpha),
-        drawtext("WIND", slide_x(610), 183, 20, "0xffffffff", FONT_BOLD, alpha=top_alpha),
-        drawtext(f"{wind_kmh} km/h", slide_x(690), 179, 30, "0xffffffff", FONT, alpha=top_alpha),
-        drawtext("HUM", slide_x(890), 183, 20, "0xffffffff", FONT_BOLD, alpha=top_alpha),
-        drawtext(f"{humidity}%", slide_x(955), 179, 30, "0xffffffff", FONT, alpha=top_alpha),
-        drawtext("TIME", slide_x(1110), 183, 20, "0xffffffff", FONT_BOLD, alpha=top_alpha),
-        drawtext(rendered_local_time, slide_x(1184), 179, 30, "0xffffffff", FONT, alpha=top_alpha),
-        drawtext("Today on Earth", "w-text_w-170", 157, 36, "0x063451ff", FONT_BOLD, alpha=top_alpha),
-        drawtext("⌒  ·  ⌒", "w-text_w-215", 112, 38, "0x237da4aa", FONT, alpha=top_alpha),
     ]
+    overlay_fade_out = max(duration - 0.42, 0.58)
+    filter_complex = (
+        f"[0:v]{','.join(base_filters)}[base];"
+        "[1:v]format=rgba,"
+        "fade=t=in:st=0:d=0.32:alpha=1,"
+        f"fade=t=out:st={overlay_fade_out}:d=0.34:alpha=1[ov];"
+        "[base][ov]overlay=x=0:y='-10+min(t/0.45\\,1)*10':format=auto[v]"
+    )
 
     cmd = [
         FFMPEG,
@@ -290,10 +229,16 @@ def capture_and_render(source: dict, index: int, out_dir: Path, duration: int) -
         "Mozilla/5.0",
         "-i",
         stream_url,
+        "-loop",
+        "1",
+        "-i",
+        str(overlay_path),
         "-t",
         str(duration),
-        "-vf",
-        ",".join(filters),
+        "-filter_complex",
+        filter_complex,
+        "-map",
+        "[v]",
         "-an",
         "-c:v",
         "libx264",
