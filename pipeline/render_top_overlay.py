@@ -16,7 +16,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 WORK = Path(__file__).resolve().parent
 ASSETS_DIR = WORK / "assets"
-GLOBE_REFERENCE = ASSETS_DIR / "globe-reference.png"
+GLOBE_REFERENCE = ASSETS_DIR / "globe-from-reference.png"
 GPT_OVERLAY_TEMPLATE = ASSETS_DIR / "top-overlay-gpt-alpha.png"
 
 CANVAS_SIZE = (1920, 1080)
@@ -42,11 +42,213 @@ BLUE = (100, 176, 217, 232)
 BLUE_DARK = (72, 145, 190, 238)
 WHITE = (255, 255, 255, 255)
 
+CITY_X = 350
+COUNTRY_X = 620
+TITLE_Y = 103
+METRIC_Y = 176
+TEMP_VALUE_X = 442
+WIND_VALUE_X = 724
+HUMIDITY_VALUE_X = 995
+TIME_VALUE_X = 1260
+BRAND_X = 1535
+BRAND_Y = 151
+
+RENDER_SCALE = 3
+
 
 def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
     if path.exists():
         return ImageFont.truetype(str(path), size=size)
     return ImageFont.truetype("arial.ttf", size=size)
+
+
+def s(value: int | float) -> int:
+    return round(value * RENDER_SCALE)
+
+
+def sc(color: tuple[int, int, int, int]) -> tuple[int, int, int, int]:
+    return color
+
+
+def scaled_font(path: Path, size: int) -> ImageFont.FreeTypeFont:
+    return load_font(path, size * RENDER_SCALE)
+
+
+def draw_reference_template(
+    *,
+    city_label: str,
+    country_label: str,
+    temp_c: int | float,
+    wind_kmh: int | float,
+    humidity: int | float,
+    local_time: str,
+) -> Image.Image:
+    """Render the fixed mockup-style top bar on a high-res canvas.
+
+    This is the production direction for the current visual pass: no generated
+    full-bar asset, no stretching loose crops, and no hand-tuned FFmpeg boxes.
+    Everything is drawn at 3x and downsampled to keep edges clean.
+    """
+    scale = RENDER_SCALE
+    image = Image.new("RGBA", (CANVAS_SIZE[0] * scale, CANVAS_SIZE[1] * scale), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+
+    # Reference-matched geometry on 1920x1080.
+    panel = {
+        "x": 146,
+        "y": 82,
+        "w": 1670,
+        "h": 166,
+        "r": 52,
+    }
+    globe = {
+        "x": 124,
+        "y": 73,
+        "size": 178,
+    }
+    band = {
+        "x": 310,
+        "y": 162,
+        "w": 1095,
+        "h": 56,
+        "r": 16,
+    }
+
+    # Soft panel shadow.
+    shadow = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    sd.rounded_rectangle(
+        (s(panel["x"] + 7), s(panel["y"] + 7), s(panel["x"] + panel["w"] + 7), s(panel["y"] + panel["h"] + 7)),
+        radius=s(panel["r"]),
+        fill=(22, 55, 74, 34),
+    )
+    image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(s(13))))
+
+    # Glass panel.
+    panel_layer = Image.new("RGBA", (s(panel["w"]), s(panel["h"])), (0, 0, 0, 0))
+    pdraw = ImageDraw.Draw(panel_layer)
+    pmask = Image.new("L", panel_layer.size, 0)
+    ImageDraw.Draw(pmask).rounded_rectangle(
+        (0, 0, panel_layer.size[0] - 1, panel_layer.size[1] - 1),
+        radius=s(panel["r"]),
+        fill=255,
+    )
+    glass = make_horizontal_gradient(
+        panel_layer.size,
+        (255, 255, 255, 222),
+        (255, 255, 255, 176),
+    )
+    panel_layer.alpha_composite(Image.composite(glass, Image.new("RGBA", panel_layer.size, (0, 0, 0, 0)), pmask))
+
+    # Mild inner blue glow, very restrained.
+    glow = Image.new("RGBA", panel_layer.size, (0, 0, 0, 0))
+    gd = ImageDraw.Draw(glow)
+    gd.rectangle((s(150), s(77), s(1220), s(134)), fill=(84, 185, 229, 32))
+    panel_layer.alpha_composite(glow.filter(ImageFilter.GaussianBlur(s(18))))
+    pdraw.rounded_rectangle(
+        (0, 0, panel_layer.size[0] - 1, panel_layer.size[1] - 1),
+        radius=s(panel["r"]),
+        outline=(255, 255, 255, 138),
+        width=s(1),
+    )
+    pdraw.line((s(180), s(72), s(1260), s(72)), fill=(95, 170, 202, 76), width=s(1))
+    pdraw.line((s(22), panel_layer.size[1] - s(4), panel_layer.size[0] - s(76), panel_layer.size[1] - s(4)), fill=(70, 139, 172, 72), width=s(1))
+    image.alpha_composite(panel_layer, (s(panel["x"]), s(panel["y"])))
+
+    # Weather band.
+    band_layer = Image.new("RGBA", (s(band["w"]), s(band["h"])), (0, 0, 0, 0))
+    bmask = Image.new("L", band_layer.size, 0)
+    ImageDraw.Draw(bmask).rounded_rectangle(
+        (0, 0, band_layer.size[0] - 1, band_layer.size[1] - 1),
+        radius=s(band["r"]),
+        fill=255,
+    )
+    bgrad = make_horizontal_gradient(
+        band_layer.size,
+        (95, 183, 223, 230),
+        (169, 218, 235, 92),
+    )
+    band_layer.alpha_composite(Image.composite(bgrad, Image.new("RGBA", band_layer.size, (0, 0, 0, 0)), bmask))
+    bd = ImageDraw.Draw(band_layer)
+    bd.line((0, s(1), band_layer.size[0] - s(46), s(1)), fill=(255, 255, 255, 120), width=s(1))
+    bd.line((0, band_layer.size[1] - s(2), band_layer.size[0] - s(60), band_layer.size[1] - s(2)), fill=(43, 123, 166, 72), width=s(1))
+    image.alpha_composite(band_layer, (s(band["x"]), s(band["y"])))
+
+    # Globe from the reference image, with a clean circular mask.
+    if GLOBE_REFERENCE.exists():
+        raw_globe = Image.open(GLOBE_REFERENCE).convert("RGBA").resize((s(globe["size"]), s(globe["size"])), Image.Resampling.LANCZOS)
+    else:
+        raw_globe = make_globe_icon(s(globe["size"]))
+    gmask = Image.new("L", raw_globe.size, 0)
+    ImageDraw.Draw(gmask).ellipse((s(2), s(2), raw_globe.size[0] - s(2), raw_globe.size[1] - s(2)), fill=255)
+    gmask = gmask.filter(ImageFilter.GaussianBlur(s(0.65)))
+    raw_globe.putalpha(gmask)
+    gglow = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    gg = ImageDraw.Draw(gglow)
+    gg.ellipse(
+        (s(globe["x"] - 9), s(globe["y"] - 9), s(globe["x"] + globe["size"] + 9), s(globe["y"] + globe["size"] + 9)),
+        fill=(121, 211, 244, 50),
+    )
+    image.alpha_composite(gglow.filter(ImageFilter.GaussianBlur(s(7))))
+    image.alpha_composite(raw_globe, (s(globe["x"]), s(globe["y"])))
+
+    # Typography.
+    city_font = fit_text(city_label, FONT_BOLD, 39 * scale, s(250))
+    country_font = fit_text(country_label, FONT_BOLD, 39 * scale, s(335))
+    metric_font = scaled_font(FONT_REGULAR, 30)
+    brand_font = scaled_font(FONT_BRAND if FONT_BRAND.exists() else FONT_REGULAR, 34)
+    text_color = (7, 52, 80, 255)
+
+    draw.text((s(350), s(103)), city_label, font=city_font, fill=text_color)
+    draw.text((s(622), s(103)), country_label, font=country_font, fill=text_color)
+    draw.text((s(1530), s(150)), "Today on Earth", font=brand_font, fill=text_color)
+
+    # Icon helpers are reused on a scaled canvas by multiplying coordinates.
+    def icon_temp(x: int, y: int) -> None:
+        d = draw
+        d.rounded_rectangle((s(x + 9), s(y), s(x + 18), s(y + 29)), radius=s(5), outline=WHITE, width=s(4))
+        d.ellipse((s(x + 3), s(y + 25), s(x + 24), s(y + 46)), outline=WHITE, width=s(4))
+        d.line((s(x + 13), s(y + 16), s(x + 13), s(y + 31)), fill=WHITE, width=s(4))
+
+    def icon_wind(x: int, y: int) -> None:
+        d = draw
+        d.arc((s(x), s(y + 3), s(x + 38), s(y + 28)), 200, 360, fill=WHITE, width=s(4))
+        d.line((s(x), s(y + 16), s(x + 53), s(y + 16)), fill=WHITE, width=s(4))
+        d.arc((s(x + 24), s(y + 16), s(x + 67), s(y + 43)), 195, 355, fill=WHITE, width=s(4))
+        d.line((s(x + 10), s(y + 32), s(x + 40), s(y + 32)), fill=WHITE, width=s(4))
+
+    def icon_drops(x: int, y: int) -> None:
+        d = draw
+        for cx, cy, r in [(x + 12, y + 4, 7), (x + 34, y + 14, 8), (x + 52, y, 6)]:
+            d.polygon([(s(cx), s(cy)), (s(cx - r), s(cy + r + 7)), (s(cx + r), s(cy + r + 7))], fill=WHITE)
+            d.ellipse((s(cx - r), s(cy + r), s(cx + r), s(cy + r * 3)), fill=WHITE)
+
+    def icon_clock(x: int, y: int) -> None:
+        d = draw
+        d.ellipse((s(x), s(y), s(x + 42), s(y + 42)), outline=WHITE, width=s(4))
+        d.line((s(x + 21), s(y + 21), s(x + 21), s(y + 9)), fill=WHITE, width=s(4))
+        d.line((s(x + 21), s(y + 21), s(x + 32), s(y + 28)), fill=WHITE, width=s(4))
+
+    icon_temp(372, 171)
+    draw.text((s(421), s(177)), f"{round(float(temp_c))}°C", font=metric_font, fill=(255, 255, 255, 246))
+    icon_wind(610, 171)
+    draw.text((s(692), s(177)), f"{round(float(wind_kmh))} km/h", font=metric_font, fill=(255, 255, 255, 246))
+    icon_drops(890, 171)
+    draw.text((s(963), s(177)), f"{round(float(humidity))}%", font=metric_font, fill=(255, 255, 255, 246))
+    icon_clock(1110, 171)
+    draw.text((s(1167), s(177)), local_time, font=metric_font, fill=(255, 255, 255, 246))
+
+    # Right brand orbit mark.
+    draw_curve(
+        draw,
+        [(s(1485), s(138)), (s(1580), s(104)), (s(1700), s(108)), (s(1785), s(140))],
+        fill=(52, 126, 164, 126),
+        width=s(2),
+        samples=120,
+    )
+    draw.ellipse((s(1690), s(116), s(1700), s(126)), fill=(38, 147, 194, 235))
+
+    return image.resize(CANVAS_SIZE, Image.Resampling.LANCZOS)
 
 
 def rounded_mask(size: tuple[int, int], radius: int) -> Image.Image:
@@ -74,6 +276,48 @@ def make_horizontal_gradient(
 
 def paste_masked(base: Image.Image, layer: Image.Image, xy: tuple[int, int], mask: Image.Image) -> None:
     base.alpha_composite(Image.composite(layer, Image.new("RGBA", layer.size, (0, 0, 0, 0)), mask), xy)
+
+
+def soften_alpha(image: Image.Image, radius: float = 0.65) -> Image.Image:
+    """Slightly feather hard alpha edges from generated overlay assets."""
+    rgba = image.convert("RGBA")
+    r, g, b, a = rgba.split()
+    a = a.filter(ImageFilter.GaussianBlur(radius))
+    rgba.putalpha(a)
+    return rgba
+
+
+def add_globe_edge_glow(layer: Image.Image) -> None:
+    """Hide rough matte edges around the globe with a soft broadcast-style rim."""
+    cx = PANEL_X + 76
+    cy = PANEL_Y + 82
+    glow = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(glow)
+    draw.ellipse((cx - 93, cy - 93, cx + 93, cy + 93), fill=(144, 221, 250, 44))
+    draw.ellipse((cx - 86, cy - 86, cx + 86, cy + 86), outline=(255, 255, 255, 150), width=3)
+    draw.ellipse((cx - 80, cy - 80, cx + 80, cy + 80), outline=(112, 196, 232, 108), width=2)
+    layer.alpha_composite(glow.filter(ImageFilter.GaussianBlur(3)))
+
+
+def load_gpt_template_layer() -> Image.Image:
+    """Normalize the GPT overlay asset to the reference-image coordinates.
+
+    The committed GPT PNG is not a 1920x1080 canvas; it is a loose export with
+    transparent padding. Resizing the whole image to 1920x1080 shifts the bar
+    down and makes all labels miss their intended slots. Crop to the visible
+    alpha bounds, then scale the actual bar to the target panel dimensions.
+    """
+    template = Image.open(GPT_OVERLAY_TEMPLATE).convert("RGBA")
+    bbox = template.getchannel("A").getbbox()
+    if not bbox:
+        return Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
+
+    cropped = template.crop(bbox)
+    target = soften_alpha(cropped.resize((PANEL_W, PANEL_H), Image.Resampling.LANCZOS))
+    layer = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
+    add_globe_edge_glow(layer)
+    layer.alpha_composite(target, (PANEL_X, PANEL_Y))
+    return layer
 
 
 def draw_curve(
@@ -352,13 +596,13 @@ def draw_labels(
     local_time: str,
 ) -> None:
     draw = ImageDraw.Draw(image)
-    city_font = fit_text(city_label, FONT_BOLD, 41, 245)
-    country_font = fit_text(country_label, FONT_BOLD, 41, 310)
+    city_font = fit_text(city_label, FONT_BOLD, 40, 255)
+    country_font = fit_text(country_label, FONT_BOLD, 40, 330)
     brand_font = load_font(FONT_BRAND if FONT_BRAND.exists() else FONT_REGULAR, 35)
     metric_font = load_font(FONT_REGULAR, 30)
 
-    draw.text((PANEL_X + 220, PANEL_Y + 27), city_label, font=city_font, fill=INK)
-    draw.text((PANEL_X + 515, PANEL_Y + 27), country_label, font=country_font, fill=INK)
+    draw.text((CITY_X, TITLE_Y), city_label, font=city_font, fill=INK)
+    draw.text((COUNTRY_X, TITLE_Y), country_label, font=country_font, fill=INK)
 
     metric_y = WEATHER_Y + 16
     icon_y = WEATHER_Y + 11
@@ -372,9 +616,8 @@ def draw_labels(
         icon(draw, x, icon_y)
         draw.text((value_x, metric_y), value, font=metric_font, fill=(255, 255, 255, 238))
 
-    brand_x = PANEL_X + PANEL_W - 305
-    draw.text((brand_x, PANEL_Y + 74), "Today on Earth", font=brand_font, fill=INK)
-    draw_orbit_mark(image, brand_x - 28, PANEL_Y + 27)
+    draw.text((BRAND_X, BRAND_Y), "Today on Earth", font=brand_font, fill=INK)
+    draw_orbit_mark(image, BRAND_X - 28, PANEL_Y + 27)
 
 
 def draw_orbit_mark(image: Image.Image, x: int, y: int) -> None:
@@ -419,25 +662,24 @@ def draw_dynamic_labels(
 ) -> None:
     """Draw only the variable text over the GPT-rendered template asset."""
     draw = ImageDraw.Draw(image)
-    city_font = fit_text(city_label, FONT_BOLD, 41, 280)
-    country_font = fit_text(country_label, FONT_BOLD, 41, 330)
-    brand_font = load_font(FONT_BRAND if FONT_BRAND.exists() else FONT_REGULAR, 35)
+    city_font = fit_text(city_label, FONT_BOLD, 40, 245)
+    country_font = fit_text(country_label, FONT_BOLD, 40, 320)
+    brand_font = load_font(FONT_BRAND if FONT_BRAND.exists() else FONT_REGULAR, 34)
     metric_font = load_font(FONT_REGULAR, 30)
 
-    draw.text((PANEL_X + 220, PANEL_Y + 27), city_label, font=city_font, fill=INK)
-    draw.text((PANEL_X + 500, PANEL_Y + 27), country_label, font=country_font, fill=INK)
+    draw.text((CITY_X, TITLE_Y), city_label, font=city_font, fill=INK)
+    draw.text((COUNTRY_X, TITLE_Y), country_label, font=country_font, fill=INK)
 
-    metric_y = WEATHER_Y + 16
     values = [
-        (WEATHER_X + 115, f"{round(float(temp_c))}°C"),
-        (WEATHER_X + 365, f"{round(float(wind_kmh))} km/h"),
-        (WEATHER_X + 635, f"{round(float(humidity))}%"),
-        (WEATHER_X + 870, local_time),
+        (TEMP_VALUE_X, f"{round(float(temp_c))}°C"),
+        (WIND_VALUE_X, f"{round(float(wind_kmh))} km/h"),
+        (HUMIDITY_VALUE_X, f"{round(float(humidity))}%"),
+        (TIME_VALUE_X, local_time),
     ]
     for x, value in values:
-        draw.text((x, metric_y), value, font=metric_font, fill=(255, 255, 255, 242))
+        draw.text((x, METRIC_Y), value, font=metric_font, fill=(255, 255, 255, 242))
 
-    draw.text((PANEL_X + PANEL_W - 305, PANEL_Y + 74), "Today on Earth", font=brand_font, fill=INK)
+    draw.text((BRAND_X, BRAND_Y), "Today on Earth", font=brand_font, fill=INK)
 
 
 def render_overlay(
@@ -450,32 +692,14 @@ def render_overlay(
     humidity: int | float = 73,
     local_time: str = "09:55",
 ) -> Path:
-    image = Image.new("RGBA", CANVAS_SIZE, (0, 0, 0, 0))
-    if GPT_OVERLAY_TEMPLATE.exists():
-        template = Image.open(GPT_OVERLAY_TEMPLATE).convert("RGBA").resize(CANVAS_SIZE, Image.Resampling.LANCZOS)
-        image.alpha_composite(template)
-        draw_dynamic_labels(
-            image,
-            city_label=city_label,
-            country_label=country_label,
-            temp_c=temp_c,
-            wind_kmh=wind_kmh,
-            humidity=humidity,
-            local_time=local_time,
-        )
-    else:
-        draw_glass_panel(image)
-        draw_weather_band(image)
-        draw_globe(image)
-        draw_labels(
-            image,
-            city_label=city_label,
-            country_label=country_label,
-            temp_c=temp_c,
-            wind_kmh=wind_kmh,
-            humidity=humidity,
-            local_time=local_time,
-        )
+    image = draw_reference_template(
+        city_label=city_label,
+        country_label=country_label,
+        temp_c=temp_c,
+        wind_kmh=wind_kmh,
+        humidity=humidity,
+        local_time=local_time,
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_path)
     return output_path

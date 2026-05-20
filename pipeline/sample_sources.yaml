@@ -13,7 +13,7 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 意大利
+    country_cn: 義大利
     city: Venice
     city_cn: 威尼斯
     latitude: 45.434
@@ -37,9 +37,9 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 意大利
+    country_cn: 義大利
     city: Rome
-    city_cn: 罗马
+    city_cn: 羅馬
     latitude: 41.9009
     longitude: 12.4833
     timezone: Europe/Rome
@@ -61,7 +61,7 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: China
-    country_cn: 中国
+    country_cn: 中國
     city: Shanghai
     city_cn: 上海
     latitude: 31.2304
@@ -85,7 +85,7 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 意大利
+    country_cn: 義大利
     city: Venice
     city_cn: 威尼斯
     latitude: 45.438
@@ -111,7 +111,7 @@ sources:
     country: World
     country_cn: 全球
     city: Live Cams
-    city_cn: 实时镜头
+    city_cn: 即時鏡頭
     latitude: 35.6762
     longitude: 139.6503
     timezone: UTC
