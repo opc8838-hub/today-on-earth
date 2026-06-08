@@ -13,7 +13,7 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 義大利
+    country_cn: 意大利
     city: Venice
     city_cn: 威尼斯
     latitude: 45.434
@@ -37,9 +37,9 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 義大利
+    country_cn: 意大利
     city: Rome
-    city_cn: 羅馬
+    city_cn: 罗马
     latitude: 41.9009
     longitude: 12.4833
     timezone: Europe/Rome
@@ -61,7 +61,7 @@ sources:
     platform: skyline_page
     provider: SkylineWebcams
     country: China
-    country_cn: 中國
+    country_cn: 中国
     city: Shanghai
     city_cn: 上海
     latitude: 31.2304
@@ -79,13 +79,109 @@ sources:
     credit: "Source: SkylineWebcams"
     notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
 
+  - id: skyline_santorini_fira
+    title: Santorini - Fira
+    url: https://www.skylinewebcams.com/en/webcam/ellada/naigaio/kyklades/santorini-fira.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Greece
+    country_cn: 希腊
+    city: Fira
+    city_cn: 费拉
+    latitude: 36.4167
+    longitude: 25.4333
+    timezone: Europe/Athens
+    scene: island
+    quality: 9
+    weather:
+      temp_c: 24
+      wind_kmh: 12
+      humidity: 62
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_santorini_firostefani
+    title: Firostefani - Santorini
+    url: https://www.skylinewebcams.com/en/webcam/ellada/naigaio/kyklades/firostefani-santorini.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Greece
+    country_cn: 希腊
+    city: Firostefani
+    city_cn: 菲罗斯特法尼
+    latitude: 36.4215
+    longitude: 25.4283
+    timezone: Europe/Athens
+    scene: island
+    quality: 9
+    weather:
+      temp_c: 24
+      wind_kmh: 12
+      humidity: 62
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_maldives_kooddoo
+    title: Mercure Maldives Kooddoo
+    url: https://www.skylinewebcams.com/en/webcam/maldives/gaafu-alif-atoll/kooddoo/kooddoo-maldives.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Maldives
+    country_cn: 马尔代夫
+    city: Kooddoo
+    city_cn: 库杜
+    latitude: 0.7324
+    longitude: 73.4336
+    timezone: Indian/Maldives
+    scene: beach
+    quality: 9
+    weather:
+      temp_c: 29
+      wind_kmh: 14
+      humidity: 78
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_sydney_harbour
+    title: Sydney Harbour
+    url: https://www.skylinewebcams.com/en/webcam/australia/new-south-wales/sydney/sydney.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Australia
+    country_cn: 澳大利亚
+    city: Sydney
+    city_cn: 悉尼
+    latitude: -33.8688
+    longitude: 151.2093
+    timezone: Australia/Sydney
+    scene: harbour
+    quality: 9
+    weather:
+      temp_c: 18
+      wind_kmh: 13
+      humidity: 64
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
   - id: skyline_venice_rialto
     title: Rialto Bridge - Venice
     url: https://www.skylinewebcams.com/en/webcam/italia/veneto/venezia/rialto-canal-grande.html
     platform: skyline_page
     provider: SkylineWebcams
     country: Italy
-    country_cn: 義大利
+    country_cn: 意大利
     city: Venice
     city_cn: 威尼斯
     latitude: 45.438
@@ -111,7 +207,7 @@ sources:
     country: World
     country_cn: 全球
     city: Live Cams
-    city_cn: 即時鏡頭
+    city_cn: 实时镜头
     latitude: 35.6762
     longitude: 139.6503
     timezone: UTC

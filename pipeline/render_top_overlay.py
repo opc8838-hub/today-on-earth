@@ -212,10 +212,12 @@ def draw_reference_template(
 
     def icon_wind(x: int, y: int) -> None:
         d = draw
-        d.arc((s(x), s(y + 3), s(x + 38), s(y + 28)), 200, 360, fill=WHITE, width=s(4))
-        d.line((s(x), s(y + 16), s(x + 53), s(y + 16)), fill=WHITE, width=s(4))
-        d.arc((s(x + 24), s(y + 16), s(x + 67), s(y + 43)), 195, 355, fill=WHITE, width=s(4))
-        d.line((s(x + 10), s(y + 32), s(x + 40), s(y + 32)), fill=WHITE, width=s(4))
+        color = (255, 255, 255, 240)
+        d.line((s(x + 2), s(y + 15), s(x + 58), s(y + 15)), fill=color, width=s(4))
+        d.arc((s(x + 42), s(y + 3), s(x + 68), s(y + 28)), 210, 72, fill=color, width=s(4))
+        d.line((s(x + 12), s(y + 29), s(x + 49), s(y + 29)), fill=color, width=s(4))
+        d.arc((s(x + 36), s(y + 19), s(x + 62), s(y + 44)), 210, 68, fill=color, width=s(4))
+        d.line((s(x + 22), s(y + 42), s(x + 40), s(y + 42)), fill=color, width=s(3))
 
     def icon_drops(x: int, y: int) -> None:
         d = draw
@@ -552,10 +554,12 @@ def draw_icon_thermometer(draw: ImageDraw.ImageDraw, x: int, y: int) -> None:
 
 
 def draw_icon_wind(draw: ImageDraw.ImageDraw, x: int, y: int) -> None:
-    draw.arc((x, y + 3, x + 38, y + 28), 200, 360, fill=WHITE, width=4)
-    draw.line((x, y + 16, x + 53, y + 16), fill=WHITE, width=4)
-    draw.arc((x + 24, y + 16, x + 67, y + 43), 195, 355, fill=WHITE, width=4)
-    draw.line((x + 10, y + 32, x + 40, y + 32), fill=WHITE, width=4)
+    color = (255, 255, 255, 240)
+    draw.line((x + 2, y + 15, x + 58, y + 15), fill=color, width=4)
+    draw.arc((x + 42, y + 3, x + 68, y + 28), 210, 72, fill=color, width=4)
+    draw.line((x + 12, y + 29, x + 49, y + 29), fill=color, width=4)
+    draw.arc((x + 36, y + 19, x + 62, y + 44), 210, 68, fill=color, width=4)
+    draw.line((x + 22, y + 42, x + 40, y + 42), fill=color, width=3)
 
 
 def draw_icon_drops(draw: ImageDraw.ImageDraw, x: int, y: int) -> None:

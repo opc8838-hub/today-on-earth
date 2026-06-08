@@ -1,0 +1,171 @@
+# Internal demo source set for a non-repeating Today on Earth render.
+# Avoids the previously used Venice, Rome, Shanghai, Santorini, Maldives, and Sydney regions.
+
+sources:
+  - id: skyline_las_vegas_strip
+    title: Las Vegas
+    url: https://www.skylinewebcams.com/en/webcam/united-states/nevada/las-vegas/las-vegas.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: United States
+    country_cn: 美国
+    city: Las Vegas
+    city_cn: 拉斯维加斯
+    latitude: 36.1147
+    longitude: -115.1728
+    timezone: America/Los_Angeles
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 28
+      wind_kmh: 12
+      humidity: 28
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_new_york_skyline
+    title: New York City Skyline
+    url: https://www.skylinewebcams.com/en/webcam/united-states/new-york/new-york/new-york-skyline.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: United States
+    country_cn: 美国
+    city: New York
+    city_cn: 纽约
+    latitude: 40.7128
+    longitude: -74.0060
+    timezone: America/New_York
+    scene: city
+    quality: 9
+    weather:
+      temp_c: 20
+      wind_kmh: 10
+      humidity: 70
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_iceland_jokulsarlon
+    title: Iceland - Jokulsarlon
+    url: https://www.skylinewebcams.com/en/webcam/iceland/austurland/hofn/jokulsarlon.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Iceland
+    country_cn: 冰岛
+    city: Jokulsarlon
+    city_cn: 杰古沙龙冰河湖
+    latitude: 64.0483
+    longitude: -16.1790
+    timezone: Atlantic/Reykjavik
+    scene: glacier
+    quality: 9
+    weather:
+      temp_c: 5
+      wind_kmh: 18
+      humidity: 78
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_marseille_calanques
+    title: Marseille - Massif des Calanques
+    url: https://www.skylinewebcams.com/en/webcam/france/provence-alpes-cote-dazur/marseille/les-calanques-de-marseille.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: France
+    country_cn: 法国
+    city: Marseille
+    city_cn: 马赛
+    latitude: 43.2965
+    longitude: 5.3698
+    timezone: Europe/Paris
+    scene: coast
+    quality: 8
+    weather:
+      temp_c: 22
+      wind_kmh: 14
+      humidity: 62
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_ascona
+    title: Ascona - Switzerland
+    url: https://www.skylinewebcams.com/en/webcam/schweiz/kanton-tessin/locarno/ascona.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Switzerland
+    country_cn: 瑞士
+    city: Ascona
+    city_cn: 阿斯科纳
+    latitude: 46.1547
+    longitude: 8.7735
+    timezone: Europe/Zurich
+    scene: lake
+    quality: 9
+    weather:
+      temp_c: 16
+      wind_kmh: 9
+      humidity: 70
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_valletta_harbour
+    title: Grand Harbour - Valletta
+    url: https://www.skylinewebcams.com/en/webcam/malta/malta/floriana/grand-harbour-valletta-waterfront.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Malta
+    country_cn: 马耳他
+    city: Valletta
+    city_cn: 瓦莱塔
+    latitude: 35.8989
+    longitude: 14.5146
+    timezone: Europe/Malta
+    scene: harbour
+    quality: 9
+    weather:
+      temp_c: 24
+      wind_kmh: 13
+      humidity: 64
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."
+
+  - id: skyline_seychelles_beau_vallon
+    title: Beau Vallon - Seychelles
+    url: https://www.skylinewebcams.com/en/webcam/seychelles/mahe/beau-vallon/beau-vallon-seychelles.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Seychelles
+    country_cn: 塞舌尔
+    city: Beau Vallon
+    city_cn: 博瓦隆
+    latitude: -4.6211
+    longitude: 55.4289
+    timezone: Indian/Mahe
+    scene: beach
+    quality: 9
+    weather:
+      temp_c: 27
+      wind_kmh: 13
+      humidity: 78
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+    notes: "Internal demo only. Direct Skyline page stream requires permission for public reuse."

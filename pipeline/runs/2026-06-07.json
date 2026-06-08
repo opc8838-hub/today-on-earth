@@ -1,0 +1,53 @@
+{
+  "date": "2026-06-07",
+  "runs": [
+    {
+      "slot": "morning",
+      "created_at": "2026-06-07T11:46:05+08:00",
+      "source_ids": [
+        "skyline_valletta_harbour",
+        "skyline_seychelles_beau_vallon",
+        "skyline_ascona",
+        "skyline_las_vegas_strip",
+        "skyline_marseille_calanques",
+        "skyline_iceland_jokulsarlon",
+        "skyline_new_york_skyline"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260607-114605\\today-on-earth-morning-2026-06-07-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-samples\\20260607-114054\\today-on-earth-sample-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260607-114605\\manifest.full.json"
+    },
+    {
+      "slot": "afternoon",
+      "created_at": "2026-06-07T22:25:54+08:00",
+      "source_ids": [
+        "skyline_shanghai",
+        "skyline_venice_san_marco",
+        "skyline_santorini_firostefani",
+        "skyline_maldives_kooddoo",
+        "skyline_sydney_harbour",
+        "skyline_rome_trevi",
+        "skyline_santorini_fira"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260607-222515\\today-on-earth-afternoon-2026-06-07-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-samples\\20260607-222102\\today-on-earth-sample-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260607-222515\\manifest.full.json"
+    },
+    {
+      "slot": "evening_retry",
+      "created_at": "2026-06-07T23:21:30+08:00",
+      "source_ids": [
+        "youtube_WJvIErIyWNc",
+        "youtube_VhRcNCbguWU",
+        "youtube_O0UGT7AT3aw",
+        "youtube_jQNVnjtLoQ8",
+        "youtube_h8glPXsnezU",
+        "youtube_rxyNjFKwzJA",
+        "youtube_avCLVuQuiHM"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260607-231258-evening-retry\\today-on-earth-evening-retry-2026-06-07-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-full\\20260607-231258-evening-retry\\today-on-earth-evening-retry-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260607-231258-evening-retry\\manifest.full.json"
+    }
+  ]
+}
