@@ -1,0 +1,164 @@
+# Temporary 2026-06-08 production pool.
+# Each source was short-probed before the full render.
+
+sources:
+  - id: skyline_tenerife_el_medano
+    title: El Medano surf and kitesurf - Tenerife
+    url: https://www.skylinewebcams.com/en/webcam/espana/canarias/santa-cruz-de-tenerife/surf-kitesurf-medano.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Spain
+    country_cn: 西班牙
+    city: El Medano
+    city_cn: 埃尔梅达诺
+    latitude: 28.0468
+    longitude: -16.5369
+    timezone: Atlantic/Canary
+    scene: beach
+    quality: 8
+    weather:
+      temp_c: 22
+      wind_kmh: 24
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_watamu_beach
+    title: Watamu Beach - Kenya
+    url: https://www.skylinewebcams.com/en/webcam/kenya/malindi/watamu/watamu-beach.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Kenya
+    country_cn: 肯尼亚
+    city: Watamu
+    city_cn: 瓦塔穆
+    latitude: -3.3520
+    longitude: 40.0200
+    timezone: Africa/Nairobi
+    scene: beach
+    quality: 8
+    weather:
+      temp_c: 28
+      wind_kmh: 18
+      humidity: 76
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_jerusalem_western_wall
+    title: Jerusalem - Western Wall
+    url: https://www.skylinewebcams.com/en/webcam/israel/jerusalem-district/jerusalem/western-wall.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Israel
+    country_cn: 以色列
+    city: Jerusalem
+    city_cn: 耶路撒冷
+    latitude: 31.7767
+    longitude: 35.2345
+    timezone: Asia/Jerusalem
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 24
+      wind_kmh: 10
+      humidity: 48
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_ushuaia
+    title: Argentina - Ushuaia
+    url: https://www.skylinewebcams.com/en/webcam/argentina/tierra-del-fuego/ushuaia/ushuaia.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Argentina
+    country_cn: 阿根廷
+    city: Ushuaia
+    city_cn: 乌斯怀亚
+    latitude: -54.8019
+    longitude: -68.3030
+    timezone: America/Argentina/Ushuaia
+    scene: harbour
+    quality: 9
+    weather:
+      temp_c: 3
+      wind_kmh: 22
+      humidity: 80
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_ballito_willard
+    title: Ballito - Willard Beach
+    url: https://www.skylinewebcams.com/en/webcam/south-africa/kwazulu-natal/kwadukuza/willard-beach.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: South Africa
+    country_cn: 南非
+    city: Ballito
+    city_cn: 巴利托
+    latitude: -29.5390
+    longitude: 31.2140
+    timezone: Africa/Johannesburg
+    scene: beach
+    quality: 8
+    weather:
+      temp_c: 23
+      wind_kmh: 17
+      humidity: 72
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_capri
+    title: Capri
+    url: https://www.skylinewebcams.com/en/webcam/italia/campania/napoli/capri-skyline.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Capri
+    city_cn: 卡普里
+    latitude: 40.5507
+    longitude: 14.2429
+    timezone: Europe/Rome
+    scene: island
+    quality: 9
+    weather:
+      temp_c: 22
+      wind_kmh: 11
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_krakow
+    title: Krakow - Poland
+    url: https://www.skylinewebcams.com/webcam/poland/lesser-poland-voivodeship/krakow/krakow.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Poland
+    country_cn: 波兰
+    city: Krakow
+    city_cn: 克拉科夫
+    latitude: 50.0647
+    longitude: 19.9450
+    timezone: Europe/Warsaw
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 18
+      wind_kmh: 10
+      humidity: 64
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"

@@ -48,6 +48,22 @@
       "video": "C:\\tmp\\today-on-earth-full\\20260608-100002\\today-on-earth-morning-2026-06-08-7-regions.mp4",
       "cover": "C:\\tmp\\today-on-earth-samples\\20260608-095520\\today-on-earth-sample-cover.jpg",
       "manifest": "C:\\tmp\\today-on-earth-full\\20260608-100002\\manifest.full.json"
+    },
+    {
+      "slot": "morning",
+      "created_at": "2026-06-08T11:52:43+08:00",
+      "source_ids": [
+        "skyline_watamu_beach",
+        "skyline_krakow",
+        "skyline_capri",
+        "skyline_ballito_willard",
+        "skyline_ushuaia",
+        "skyline_jerusalem_western_wall",
+        "skyline_tenerife_el_medano"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260608-115148\\today-on-earth-morning-2026-06-08-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-samples\\20260608-114632\\today-on-earth-sample-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260608-115148\\manifest.full.json"
     }
   ]
 }

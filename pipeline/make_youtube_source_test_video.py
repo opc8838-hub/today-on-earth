@@ -263,6 +263,26 @@ SOURCE_META: dict[str, dict] = {
         "timezone": "America/Toronto",
         "rating": "gold",
     },
+    "7i8ARjIeM2k": {
+        "city": "Coral City",
+        "city_cn": "珊瑚城",
+        "country": "United States",
+        "country_cn": "美国",
+        "latitude": 25.7617,
+        "longitude": -80.1918,
+        "timezone": "America/New_York",
+        "rating": "usable",
+    },
+    "z_fY1pj1VBw": {
+        "city": "Taipei Xiangshan",
+        "city_cn": "台北象山",
+        "country": "Taiwan",
+        "country_cn": "中国台湾",
+        "latitude": 25.033,
+        "longitude": 121.5654,
+        "timezone": "Asia/Taipei",
+        "rating": "usable",
+    },
 }
 
 
@@ -450,7 +470,7 @@ def run_opencli_browser(*args: str, timeout: int = 120) -> subprocess.CompletedP
 def try_run_opencli_browser(*args: str, timeout: int = 120) -> None:
     try:
         run_opencli_browser(*args, timeout=timeout)
-    except RuntimeError:
+    except (RuntimeError, subprocess.TimeoutExpired):
         pass
 
 
@@ -588,7 +608,7 @@ def prepare_human_fullscreen(source: dict, out_dir: Path, index: int, wait_secon
         result = run_opencli_browser("eval", script, timeout=60)
         viewport = parse_opencli_object(result.stdout)
         print(f"  opencli fullscreen: {result.stdout.strip()[:260]}")
-    run_opencli_browser("unbind", timeout=30)
+    try_run_opencli_browser("unbind", timeout=30)
     prepare_recording_desktop(viewport, allow_f11=False)
     return capture_precheck(out_dir, index, source, HUMAN_FULLSCREEN_CROP)
 
