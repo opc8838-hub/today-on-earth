@@ -1,0 +1,164 @@
+# Temporary 2026-06-08 evening production pool.
+# Each source was short-probed before the full render and is not in today's daily source_id record.
+
+sources:
+  - id: skyline_gozo_munxar
+    title: Gozo - Munxar
+    url: https://www.skylinewebcams.com/en/webcam/malta/gozo/munxar/gozo-munxar.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Malta
+    country_cn: 马耳他
+    city: Gozo
+    city_cn: 戈佐
+    latitude: 36.0300
+    longitude: 14.2333
+    timezone: Europe/Malta
+    scene: island
+    quality: 8
+    weather:
+      temp_c: 24
+      wind_kmh: 12
+      humidity: 66
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_bologna_towers
+    title: Bologna - Asinelli Tower
+    url: https://www.skylinewebcams.com/en/webcam/italia/emilia-romagna/bologna/bologna-torre-degli-asinelli.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Bologna
+    city_cn: 博洛尼亚
+    latitude: 44.4949
+    longitude: 11.3426
+    timezone: Europe/Rome
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 22
+      wind_kmh: 9
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_reykjavik_hallgrimskirkja
+    title: Reykjavik - Hallgrimskirkja
+    url: https://www.skylinewebcams.com/en/webcam/iceland/greater-reykjavik/reykjavik/hallgrimskirkja-church.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Iceland
+    country_cn: 冰岛
+    city: Reykjavik
+    city_cn: 雷克雅未克
+    latitude: 64.1466
+    longitude: -21.9426
+    timezone: Atlantic/Reykjavik
+    scene: landmark
+    quality: 8
+    weather:
+      temp_c: 7
+      wind_kmh: 18
+      humidity: 78
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_puerto_de_la_cruz
+    title: Puerto de la Cruz - Tenerife
+    url: https://www.skylinewebcams.com/en/webcam/espana/canarias/santa-cruz-de-tenerife/puerto-de-la-cruz.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Spain
+    country_cn: 西班牙
+    city: Puerto de la Cruz
+    city_cn: 拉克鲁斯港
+    latitude: 28.4134
+    longitude: -16.5481
+    timezone: Atlantic/Canary
+    scene: coast
+    quality: 8
+    weather:
+      temp_c: 21
+      wind_kmh: 12
+      humidity: 66
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_miami
+    title: Miami
+    url: https://www.skylinewebcams.com/en/webcam/united-states/florida/miami/miami.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: United States
+    country_cn: 美国
+    city: Miami
+    city_cn: 迈阿密
+    latitude: 25.7617
+    longitude: -80.1918
+    timezone: America/New_York
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 27
+      wind_kmh: 14
+      humidity: 74
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_venice_rialto
+    title: Rialto Bridge - Venice
+    url: https://www.skylinewebcams.com/en/webcam/italia/veneto/venezia/rialto-canal-grande.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Venice
+    city_cn: 威尼斯
+    latitude: 45.4380
+    longitude: 12.3358
+    timezone: Europe/Rome
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 21
+      wind_kmh: 8
+      humidity: 66
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_milan_duomo
+    title: Milan Cathedral
+    url: https://www.skylinewebcams.com/en/webcam/italia/lombardia/milano/duomo-milano.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Milan
+    city_cn: 米兰
+    latitude: 45.4642
+    longitude: 9.1900
+    timezone: Europe/Rome
+    scene: landmark
+    quality: 9
+    weather:
+      temp_c: 21
+      wind_kmh: 8
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"

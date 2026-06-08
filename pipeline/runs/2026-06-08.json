@@ -64,6 +64,22 @@
       "video": "C:\\tmp\\today-on-earth-full\\20260608-115148\\today-on-earth-morning-2026-06-08-7-regions.mp4",
       "cover": "C:\\tmp\\today-on-earth-samples\\20260608-114632\\today-on-earth-sample-cover.jpg",
       "manifest": "C:\\tmp\\today-on-earth-full\\20260608-115148\\manifest.full.json"
+    },
+    {
+      "slot": "afternoon",
+      "created_at": "2026-06-08T22:41:51+08:00",
+      "source_ids": [
+        "skyline_miami",
+        "skyline_bologna_towers",
+        "skyline_gozo_munxar",
+        "skyline_puerto_de_la_cruz",
+        "skyline_reykjavik_hallgrimskirkja",
+        "skyline_milan_duomo",
+        "skyline_venice_rialto"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260608-224101\\today-on-earth-afternoon-2026-06-08-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-samples\\20260608-223614\\today-on-earth-sample-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260608-224101\\manifest.full.json"
     }
   ]
 }
