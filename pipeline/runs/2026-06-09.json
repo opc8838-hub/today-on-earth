@@ -1,0 +1,21 @@
+{
+  "date": "2026-06-09",
+  "runs": [
+    {
+      "slot": "morning",
+      "created_at": "2026-06-09T08:49:09+08:00",
+      "source_ids": [
+        "skyline_tenerife_el_medano",
+        "skyline_ushuaia",
+        "skyline_krakow",
+        "skyline_jerusalem_western_wall",
+        "skyline_watamu_beach",
+        "skyline_ballito_willard",
+        "skyline_capri"
+      ],
+      "video": "C:\\tmp\\today-on-earth-full\\20260609-084813\\today-on-earth-morning-2026-06-09-7-regions.mp4",
+      "cover": "C:\\tmp\\today-on-earth-samples\\20260609-084254\\today-on-earth-sample-cover.jpg",
+      "manifest": "C:\\tmp\\today-on-earth-full\\20260609-084813\\manifest.full.json"
+    }
+  ]
+}
