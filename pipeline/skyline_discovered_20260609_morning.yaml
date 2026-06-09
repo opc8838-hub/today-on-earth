@@ -1,0 +1,165 @@
+# Discovered Skyline pool for the 2026-06-09 morning redo.
+# Built from Skyline new/top/category pages, excluding 2026-06-08 and prior 2026-06-09 delivered source IDs.
+# Each selected source passed a 2-second HLS probe before rendering.
+
+sources:
+  - id: skyline_porto_di_sapri
+    title: Harbor of Sapri
+    url: https://www.skylinewebcams.com/en/webcam/italia/campania/salerno/porto-di-sapri.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Italy
+    country_cn: 意大利
+    city: Sapri
+    city_cn: 萨普里
+    latitude: 40.0744
+    longitude: 15.6325
+    timezone: Europe/Rome
+    scene: harbour
+    quality: 8
+    weather:
+      temp_c: 22
+      wind_kmh: 10
+      humidity: 68
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_stobrec
+    title: Stobrec - Croatia
+    url: https://www.skylinewebcams.com/en/webcam/hrvatska/splitsko-dalmatinska/split/stobrec.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Croatia
+    country_cn: 克罗地亚
+    city: Stobrec
+    city_cn: 斯托布雷奇
+    latitude: 43.5012
+    longitude: 16.5212
+    timezone: Europe/Zagreb
+    scene: coast
+    quality: 8
+    weather:
+      temp_c: 23
+      wind_kmh: 12
+      humidity: 64
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_traffic_floral_park
+    title: San Juan - Puerto Rico
+    url: https://www.skylinewebcams.com/en/webcam/puerto-rico/san-juan/san-juan/traffic-floral-park.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Puerto Rico
+    country_cn: 波多黎各
+    city: San Juan
+    city_cn: 圣胡安
+    latitude: 18.4655
+    longitude: -66.1057
+    timezone: America/Puerto_Rico
+    scene: city
+    quality: 8
+    weather:
+      temp_c: 28
+      wind_kmh: 14
+      humidity: 75
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_mount_pantokrator
+    title: Corfu - Mount Pantokrator
+    url: https://www.skylinewebcams.com/en/webcam/ellada/ionian-islands/corfu/mount-pantokrator.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Greece
+    country_cn: 希腊
+    city: Corfu
+    city_cn: 科孚
+    latitude: 39.7495
+    longitude: 19.8677
+    timezone: Europe/Athens
+    scene: mountain
+    quality: 8
+    weather:
+      temp_c: 24
+      wind_kmh: 13
+      humidity: 62
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_parachuting_launch_pad
+    title: Parachuting Launch Pad in Fadilli
+    url: https://www.skylinewebcams.com/en/webcam/turkey/marmara/nilufer/parachuting-launch-pad.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Turkey
+    country_cn: 土耳其
+    city: Fadilli
+    city_cn: 法迪利
+    latitude: 40.1767
+    longitude: 28.8246
+    timezone: Europe/Istanbul
+    scene: mountain
+    quality: 8
+    weather:
+      temp_c: 21
+      wind_kmh: 9
+      humidity: 58
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_vue_panoramique
+    title: Menton - France
+    url: https://www.skylinewebcams.com/en/webcam/france/provence-alpes-cote-dazur/menton/vue-panoramique.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: France
+    country_cn: 法国
+    city: Menton
+    city_cn: 芒通
+    latitude: 43.7745
+    longitude: 7.4975
+    timezone: Europe/Paris
+    scene: coast
+    quality: 8
+    weather:
+      temp_c: 23
+      wind_kmh: 10
+      humidity: 65
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
+
+  - id: skyline_marina
+    title: Marina of Saint George's - Grenada
+    url: https://www.skylinewebcams.com/en/webcam/grenada/saint-georges/springs/marina.html
+    platform: skyline_page
+    provider: SkylineWebcams
+    country: Grenada
+    country_cn: 格林纳达
+    city: Saint George's
+    city_cn: 圣乔治
+    latitude: 12.0561
+    longitude: -61.7488
+    timezone: America/Grenada
+    scene: marina
+    quality: 8
+    weather:
+      temp_c: 28
+      wind_kmh: 18
+      humidity: 76
+    status: active
+    rights_status: permission_needed
+    usage_mode: internal_demo
+    credit: "Source: SkylineWebcams"
