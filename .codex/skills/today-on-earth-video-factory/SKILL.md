@@ -1,6 +1,6 @@
 ---
 name: today-on-earth-video-factory
-description: Generate, review, and deliver Today on Earth / 今日地球 finished videos from the local today-on-earth repo. Use when the user asks to make morning/afternoon daily videos, combine the Today on Earth intro with live SkylineWebcams footage, select non-repeating daily sources, render weather/location overlays, produce final video files, or send completed videos via the user's Feishu/Lark bridge.
+description: Generate, review, and deliver Today on Earth / 浠婃棩鍦扮悆 finished videos from the local today-on-earth repo. Use when the user asks to make morning/afternoon daily videos, combine the Today on Earth intro with live SkylineWebcams footage, select non-repeating daily sources, render weather/location overlays, produce final video files, or send completed videos via the user's Feishu/Lark bridge.
 ---
 
 # Today on Earth Video Factory
@@ -36,8 +36,8 @@ Use today-on-earth-video-factory skill in C:\Users\Administrator\codex-projects\
 
 Defaults:
 
-- Intro: `C:\Users\Administrator\Desktop\微信视频2026-06-06_221529_676.mp4`
-- Opening: approved `Today on Earth / 今日地球` intro clip
+- Intro: `C:\Users\Administrator\Desktop\寰俊瑙嗛2026-06-06_221529_676.mp4`
+- Opening: approved `Today on Earth / 浠婃棩鍦扮悆` intro clip
 - Intro-to-live blend: final 0.70 seconds of intro crossfade into first live camera
 - Live sources: 7 regions
 - Per-region duration: 6.75 seconds
@@ -53,13 +53,13 @@ Defaults:
 - Current daily morning/afternoon productions MUST pass `--duration 6.75 --transition 0.55` unless the user explicitly asks for a shorter legacy render.
 - If the user mentions updated rules, overnight/last-night Codex changes, at-least-47-seconds timing, OpenCLI, YouTube fullscreen, or human fullscreen, read `pipeline\VIDEO_FACTORY_NOTES_2026-06-08_OPENCLI.md` before choosing commands.
 - Before rendering or judging source quality, read `references/production-rules.md` and follow the Broadcast Overlay Standard, Source Frame Acceptance, and Timing Contract.
-- If the user refers to the "basic finished product", "基本成品", previous visual decisions, or asks to remember the current style, read `pipeline\VIDEO_FACTORY_NOTES.md` in the repo and preserve the locked 2026-06-07 baseline.
+- If the user refers to the "basic finished product", "鍩烘湰鎴愬搧", previous visual decisions, or asks to remember the current style, read `pipeline\VIDEO_FACTORY_NOTES.md` in the repo and preserve the locked 2026-06-07 baseline.
 - Always inspect the final `Full video:` and `Full manifest:` paths printed by the script.
-- When reporting the region list, include English and Chinese names, e.g. `Sydney 悉尼, Australia 澳大利亚`.
+- When reporting the region list, include English and Chinese names, e.g. `Sydney 鎮夊凹, Australia 婢冲ぇ鍒╀簹`.
 - Do not repeat source IDs within the same date. Morning sources block afternoon reuse.
 - Enforce the Source Diversity Contract in `references/source-selection.md`: do not make a normal 7-region episode from repeated city clusters or repeated countries when alternatives exist.
 - Prefer global variety over convenient source availability.
-- Daily source selection should be random and flexible across the large SkylineWebcams pool and the user's curated YouTube list at `C:\Users\Administrator\Desktop\today-on-earth\镜头源.txt`. Do not use fixed provider quotas. YouTube sources in that file are manually selected by the user and may be used whenever they pass the normal non-repeat, geography, and final timeline checks.
+- Daily source selection should be random and flexible across the large SkylineWebcams pool and the user's curated YouTube list at `C:\Users\Administrator\Desktop\today-on-earth\闀滃ご婧?txt`. Do not use fixed provider quotas. YouTube sources in that file are manually selected by the user and may be used whenever they pass the normal non-repeat, geography, and final timeline checks.
 - Keep the legal status as internal/demo unless the user explicitly says the source is cleared.
 - If source/weather fetching fails transiently, retry once before changing sources.
 - If there are not enough unused sources for the afternoon, report the shortage before allowing repeats.
@@ -67,6 +67,8 @@ Defaults:
 ## Current Source Policy
 
 - SkylineWebcams: the whole Skyline site can be used as an internal candidate source pool. Do not reject a Skyline source only because of fog, low light, backlight, sunset, ordinary haze, or imperfect weather. Reject only technical failures, page/control capture, unreadable footage, giant burned-in overlays, or a source that cannot survive the Today on Earth render.
+- Day/night mix is a ratio rule, not a rejection rule. Night sources are part of the product's value. `night_city_good` sources such as city lights, harbors, roads, and public squares are usable. `night_nature_weak` sources such as beaches, mountains, lakes, or coastlines with faint moonlight or a few lights are also usable. Do not permanently exclude them for being dark.
+- For a normal 7-region episode, 2-3 night or weak-night clips are acceptable, but avoid delivering 4-5 mostly dark clips unless the user explicitly asks for a night-themed episode. Pure black/unreadable footage may be skipped for the current render, but should not be permanently blacklisted.
 - YouTube: usable as a supplemental source pool. Direct stream capture is preferred when cookies/login automation works. Browser capture is a fallback, not the quality target.
 - YouTube browser fallback quality rule: avoid the old small player crop (`1250x704 -> 1920x1080`) for finished production when possible. Prefer a larger Chrome/YouTube player capture after real playback precheck, around `1816x1022 -> 1920x1080`, then apply the normal HD normalization and overlay.
 - Large/fullscreen YouTube browser capture is not automatically safe: it can accidentally include live chat, right sidebars, prompts, or subscription popups. Validate every rendered source with timeline frames. If any page UI appears, rerender with direct stream capture or the stable clean player crop and report the quality tradeoff.
