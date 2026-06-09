@@ -83,6 +83,22 @@ For a 7-region video, prefer:
 
 Use source metadata and current availability rather than forcing this mix when streams are down.
 
+## Day / Night Mix
+
+Night footage is not a failure state. A complete Today on Earth episode should show real time-zone differences across Earth, so night scenes should remain in the rotation.
+
+Use these lightweight classes during source review:
+
+- `night_city_good`: city lights, harbors, roads, public squares, or other night views with readable visual content. Usable.
+- `night_nature_weak`: beaches, mountains, lakes, coasts, islands, or rural scenes with faint moonlight, skyline glow, or a few lights. Usable.
+- `too_dark`: nearly pure black, no readable place/skyline/scene information, or technically unreadable footage. Skip for the current render only; do not permanently blacklist.
+
+For a normal 7-region episode:
+
+- 2-3 `night_city_good` or `night_nature_weak` clips are acceptable.
+- Avoid 4-5 mostly dark clips in one episode unless the user explicitly asks for a night-themed render.
+- Do not use local time or darkness as a hard exclusion. Use the episode-level ratio to keep coverage broad while still rotating through the full Skyline source pool over time.
+
 ## Skyline Candidate Rule
 
 As of 2026-06-07, the user approved the whole SkylineWebcams site as an internal candidate source pool.
@@ -101,7 +117,7 @@ When the user provides YouTube live sources, do not judge them from thumbnails.
 Use the project audit tool with the user's visible Chrome session:
 
 ```powershell
-python pipeline\audit_youtube_sources.py --source-file "C:\Users\Administrator\Desktop\today-on-earth\镜头源.txt" --wait 45
+python pipeline\audit_youtube_sources.py --source-file "C:\Users\Administrator\Desktop\today-on-earth\闀滃ご婧?txt" --wait 45
 ```
 
 The tool outputs:
@@ -114,7 +130,7 @@ The tool outputs:
 If a source is blank on the first pass, retry it with a longer wait and `--only-ids`:
 
 ```powershell
-python pipeline\audit_youtube_sources.py --source-file "C:\Users\Administrator\Desktop\today-on-earth\镜头源.txt" --wait 45 --only-ids "VIDEO_ID"
+python pipeline\audit_youtube_sources.py --source-file "C:\Users\Administrator\Desktop\today-on-earth\闀滃ご婧?txt" --wait 45 --only-ids "VIDEO_ID"
 ```
 
 Only promote a YouTube source after a real playback frame is inspected. A good frame does not mean download automation is stable; verify yt-dlp or browser capture separately before production rendering.
